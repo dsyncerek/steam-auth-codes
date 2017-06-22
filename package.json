@@ -1,0 +1,22 @@
+{
+  "name": "steam-authcodes",
+  "version": "1.0.0",
+  "author": "dsyncerek",
+  "homepage": "https://github.com/dsyncerek/steam-authcodes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsyncerek/steam-authcodes"
+  },
+  "dependencies": {
+    "express": "*"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-uglify": "*",
+    "gulp-sass": "*",
+    "gulp-image": "*",
+    "gulp-htmlmin": "*",
+    "gulp-clean-css": "*"
+  }
+}
