@@ -8,7 +8,12 @@
     "url": "git+https://github.com/dsyncerek/steam-authcodes"
   },
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "express-session": "*",
+    "passport": "*",
+    "passport-steam": "*",
+    "socket.io": "*",
+    "steam-totp": "*"
   },
   "devDependencies": {
     "gulp": "*",
