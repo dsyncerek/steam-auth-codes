@@ -1,27 +1,27 @@
 {
-  "name": "steam-authcodes",
-  "version": "1.0.0",
-  "author": "dsyncerek",
-  "homepage": "https://github.com/dsyncerek/steam-authcodes",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dsyncerek/steam-authcodes"
-  },
-  "dependencies": {
-    "express": "*",
-    "express-session": "*",
-    "passport": "*",
-    "passport-steam": "*",
-    "socket.io": "*",
-    "steam-totp": "*"
-  },
-  "devDependencies": {
-    "gulp": "*",
-    "gulp-concat": "*",
-    "gulp-uglify": "*",
-    "gulp-sass": "*",
-    "gulp-image": "*",
-    "gulp-htmlmin": "*",
-    "gulp-clean-css": "*"
-  }
+    "name": "steam-authcodes",
+    "version": "1.0.0",
+    "author": "dsyncerek",
+    "homepage": "https://github.com/dsyncerek/steam-authcodes",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dsyncerek/steam-authcodes"
+    },
+    "dependencies": {
+        "express": "*",
+        "express-session": "*",
+        "passport": "*",
+        "passport-steam": "*",
+        "socket.io": "*",
+        "steam-totp": "*"
+    },
+    "devDependencies": {
+        "gulp": "*",
+        "gulp-concat": "*",
+        "gulp-uglify": "*",
+        "gulp-sass": "*",
+        "gulp-image": "*",
+        "gulp-htmlmin": "*",
+        "gulp-clean-css": "*"
+    }
 }

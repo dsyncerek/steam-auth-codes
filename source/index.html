@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="app">
-  <head>
-    <meta charset="utf-8"/>
+
+<head>
+    <meta charset="utf-8" />
     <base href="/">
     <title>Steam AuthCodes</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,13 +10,15 @@
     <meta name="theme-color" content="#171A21">
     <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="styles/styles.css">
-  </head>
-  <body ng-controller="MainCtrl">
+</head>
+
+<body ng-controller="MainCtrl">
     <div ng-if="user.access===true" ng-include="'views/home.html'"></div>
     <div ng-if="user.access!==true" ng-include="'views/login.html'"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.angularjs.org/1.6.4/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="scripts/main.js"></script>
-  </body>
+</body>
+
 </html>

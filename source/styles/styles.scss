@@ -1,77 +1,70 @@
-@import url( 'https://fonts.googleapis.com/css?family=Oswald|Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Oswald|Ubuntu');
 $blue: #00adee;
 $white: #eee;
 $red: #bb0000;
-
 body {
-  background: transparent url("../images/bg.jpg") no-repeat fixed center center;
-  font-family: 'Ubuntu', sans-serif;
-  color: $white;
-  text-align: center;
-  margin: 20px;
-  @media (max-width: 767px) {
-    background: #171A21;
-  }
+    background: transparent url("../images/bg.jpg") no-repeat fixed center center;
+    font-family: 'Ubuntu', sans-serif;
+    color: $white;
+    text-align: center;
+    margin: 20px;
+    @media (max-width: 767px) {
+        background: #171A21;
+    }
 }
 
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .box {
-  padding: 20px;
-  margin: 10px;
-  border-radius: 20px;
-  min-width: 150px;
-  max-width: 200px;
-  background: rgba(0,0,102,0.3);
-  border: 1px solid $white;
-
-  strong {
-    display: block;
-    font-size: 30px;
-  }
-
-  div {
-    height: 10px;
-    background: $blue;
-    margin: 5px 0;
-    width: 100%;
-    display: inline-block;
-  }
-
-  span {
-    display: block;
-    color: $blue;
-  }
-
-  &--red {
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20px;
+    min-width: 150px;
+    max-width: 200px;
+    background: rgba(0, 0, 102, 0.3);
+    border: 1px solid $white;
     strong {
-      color: $red;
+        display: block;
+        font-size: 30px;
     }
-
     div {
-      background: $red;
+        height: 10px;
+        background: $blue;
+        margin: 5px 0;
+        width: 100%;
+        display: inline-block;
     }
-  }
+    span {
+        display: block;
+        color: $blue;
+    }
+    &--red {
+        strong {
+            color: $red;
+        }
+        div {
+            background: $red;
+        }
+    }
 }
 
 .link {
-  text-decoration: none;
-  transition: 0.3s;
-  color: $blue;
-  border-bottom: 1px solid transparent;
-  &:hover {
-    color: $white;
-    border-bottom: 1px solid $blue;
-  }
-
+    text-decoration: none;
+    transition: 0.3s;
+    color: $blue;
+    border-bottom: 1px solid transparent;
+    &:hover {
+        color: $white;
+        border-bottom: 1px solid $blue;
+    }
 }
 
 h1 {
-  font-family: Oswald;
-  font-size: 40px;
-  letter-spacing: 5px;
+    font-family: Oswald;
+    font-size: 40px;
+    letter-spacing: 5px;
 }
