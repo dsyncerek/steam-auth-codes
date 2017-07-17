@@ -29,22 +29,13 @@ gulp.task('images', function () {
         .pipe(gulp.dest('public/images/'));
 });
 
-gulp.task('views', function () {
-    gulp.src('source/views/*')
-        .pipe(htmlmin({
-            collapseWhitespace: true
-        }))
-        .pipe(gulp.dest('public/views/'));
-});
-
 gulp.task('others', function () {
     gulp.src('source/*')
         .pipe(gulp.dest('public/'));
 });
 
-gulp.task('default', ['scripts', 'styles', 'views', 'images', 'others'], function () {
+gulp.task('default', ['scripts', 'styles', 'images', 'others'], function () {
     gulp.watch('source/scripts/**/*.js', ['scripts']);
-    gulp.watch('source/views/**/*.html', ['views']);
     gulp.watch('source/styles/**/*.scss', ['styles']);
     gulp.watch('source/images/**/*', ['images']);
     gulp.watch('source/*', ['others']);

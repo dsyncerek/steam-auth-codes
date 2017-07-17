@@ -31,5 +31,5 @@ app.factory("socket", ["$rootScope", function ($rootScope) {
         emit: function (event, data) {
             socket.emit(event, data);
         }
-    }
+    };
 }]);

@@ -13,8 +13,27 @@
 </head>
 
 <body ng-controller="MainCtrl">
-    <div ng-if="user.access===true" ng-include="'views/home.html'"></div>
-    <div ng-if="user.access!==true" ng-include="'views/login.html'"></div>
+    <h1>Steam AuthCodes</h1>
+    <div ng-if="user.access===true">
+        <div class="container">
+            <div ng-repeat="acc in accounts" ng-class="{'box--red':width<30}" class="box">
+                <strong>{{acc.code}}</strong>
+                <div ng-style="{'width':width+'%'}"></div>
+                <span>{{acc.username}}</span>
+            </div>
+        </div>
+        <a class="link" href="/logout">Logout</a>
+    </div>
+    <div ng-if="user.access!==true">
+        <div ng-if="user.steamid===undefined">
+            <a href="/login"><img alt="login" src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png"></a>
+        </div>
+        <div ng-if="user.steamid!==undefined">
+            <h3>Hello {{user.name}}!</h3>
+            <h4>You do not have permission!</h4>
+            <a class="link" href="/logout">Logout</a>
+        </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.angularjs.org/1.6.4/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
