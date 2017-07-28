@@ -20,8 +20,10 @@
         "gulp-concat": "*",
         "gulp-uglify": "*",
         "gulp-sass": "*",
-        "gulp-image": "*",
         "gulp-htmlmin": "*",
-        "gulp-clean-css": "*"
+        "gulp-clean-css": "*",
+        "gulp-autoprefixer": "*",
+        "gulp-babel": "*",
+        "babel-preset-es2015": "*"
     }
 }

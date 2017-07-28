@@ -8,6 +8,7 @@ body {
     color: $white;
     text-align: center;
     margin: 20px;
+    display: none;
     @media (max-width: 767px) {
         background: #171A21;
     }

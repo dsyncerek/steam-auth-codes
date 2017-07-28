@@ -1,6 +1,7 @@
 var app = angular.module("app", []);
 
 app.controller("MainCtrl", ["$scope", "socket", "$interval", function ($scope, socket, $interval) {
+    angular.element('body').css('display', 'block');
     socket.on('login', function (user) {
         if (user.steamid !== undefined) {
             $scope.user = user;
