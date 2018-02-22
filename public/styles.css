@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald|Ubuntu');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('http://codes.loscsgo.com/images/bg.jpg');
+    background-size: cover;
+    font-family: Ubuntu, Arial;
+    color: #eeeeee;
+
+    background: #171A21;
+}
+
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 100px;
+}
+
+.header {
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.footer a {
+    margin: 0 15px;
+}
+
+.main {
+    text-align: center;
+}
+
+.main--codes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.link {
+    text-decoration: none;
+    transition: 0.3s;
+    color: #00adee;
+    border-bottom: 1px solid transparent;
+}
+
+.link:hover, .link:focus {
+    color: #eeeeee;
+    border-bottom: 1px solid #00adee;
+}
+
+.bot {
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20px;
+    min-width: 150px;
+    background: rgba(0, 0, 102, 0.1);
+    border: 1px solid rgba(238, 238, 238, 0.25);
+}
+
+.bot__code {
+    font-size: 30px;
+    font-weight: bold;
+    display: block;
+}
+
+.bot__bar {
+    height: 7px;
+    background: #00adee;
+    margin: 10px 0 5px;
+    width: 100%;
+    display: inline-block;
+}
+
+.bot__name {
+    display: block;
+    color: #00adee;
+}

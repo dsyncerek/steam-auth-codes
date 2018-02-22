@@ -1,86 +1,74 @@
 const express = require('express');
-const fs = require('fs');
+const http = require('http');
+const socketIO = require('socket.io');
 const session = require('express-session');
-const passport = require('passport');
-const SteamStrategy = require('passport-steam').Strategy;
-const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const steam = require('steam-login');
 const SteamTotp = require('steam-totp');
+const fs = require('fs');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 
 const config = JSON.parse(fs.readFileSync('config.json'));
-let accounts = JSON.parse(fs.readFileSync('accounts.json'));
+const accounts = JSON.parse(fs.readFileSync('accounts.json'));
 
-const sessionMiddleware = session({
-    secret: config.secret,
-    name: 'session_name',
-    resave: true,
-    saveUninitialized: true
-});
+const admins = Array.isArray(config.admins) ? config.admins : [config.admins];
 
-const ensureAuthenticated = (req, res, next) => {
-    if (req.user !== undefined) return next();
-    res.send('');
+const generateAuthCodes = () => {
+    let changed = false;
+    accounts.forEach(acc => {
+        let code = SteamTotp.generateAuthCode(acc.shared);
+        if (acc.code !== code) changed = true;
+        acc.code = code;
+    });
+    if (changed) io.to('codes').emit('codes', accounts);
 };
 
-passport.use(new SteamStrategy({
-    returnURL: config.website + '/return',
-    realm: config.website + '/',
-    apiKey: config.apiKey
-}, (identifier, profile, done) => {
-    process.nextTick(() => {
-        let ret = {
-            steamid: profile._json.steamid,
-            name: profile._json.personaname
-        };
-        if (ret.steamid === config.admin) ret.access = true;
-        return done(null, ret);
-    });
-}));
+setInterval(generateAuthCodes, 1000);
 
-passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((obj, done) => done(null, obj));
 
-server.listen(3005);
+const sessionMiddleware = session({resave: false, saveUninitialized: false, secret: config.secret});
 
+app.use(express.static(__dirname + '/build/'));
 app.use(sessionMiddleware);
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.static(__dirname + '/public/'));
+app.use(steam.middleware({realm: `${config.website}:${config.port}/`, verify: `${config.website}:${config.port}/verify`, apiKey: config.apiKey}));
 io.use((socket, next) => sessionMiddleware(socket.request, {}, next));
 
-app.get('/login', passport.authenticate('steam'), (req, res) => res.redirect('/'));
-app.get('/return', passport.authenticate('steam'), (req, res) => res.redirect('/'));
+app.get('/login', steam.authenticate(), (req, res) => {
+    res.redirect('/');
+});
 
-app.get('/logout', ensureAuthenticated, (req, res) => {
+app.get('/verify', steam.verify(), (req, res) => {
+    res.redirect('/');
+});
+
+app.get('/logout', steam.enforceLogin('/'), (req, res) => {
     req.logout();
     res.redirect('/');
 });
 
-io.on('connection', function (socket) {
-    try {
-        var user = socket.request.session.passport.user || {};
-    } catch (e) {
-        var user = {};
-    } finally {
-        if (user.access === true) {
-            socket.join('codes');
-            socket.emit('codes', accounts);
-        }
-        socket.emit('login', user);
+app.get('/codes', steam.enforceLogin('/'), (req, res) => {
+    admins.includes(req.user.steamid) ? res.send(authCodes) : res.redirect('/');
+});
+
+app.get('/user', steam.enforceLogin('/'), (req, res) => {
+    res.send(req.user._json);
+});
+
+io.on('connection', socket => {
+    let user = socket.request.session.steamUser || {};
+    let access = admins.includes(user.steamid);
+    if (user.steamid !== undefined && access) {
+        user = user._json;
+        socket.join('codes');
+        socket.emit('logged', {user, codes: accounts});
+    } else if (user.steamid !== undefined) {
+        user = user._json;
+        socket.emit('logged', {user});
+    } else {
+        socket.emit('not logged');
     }
 });
 
-const generateAuthCodes = () => {
-    let change = false;
-    accounts.forEach((acc) => {
-        let code = SteamTotp.generateAuthCode(acc.shared);
-        if (code !== acc.code) change = true;
-        acc.code = code;
-    });
-    if (change) {
-        io.to('codes').emit('codes', accounts);
-    }
-};
-
-setInterval(generateAuthCodes, 1000);
+server.listen(config.port);
