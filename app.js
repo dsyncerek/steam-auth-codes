@@ -6,12 +6,14 @@ const steam = require('steam-login');
 const SteamTotp = require('steam-totp');
 const fs = require('fs');
 
+const config = JSON.parse(fs.readFileSync('config.json'));
+const accounts = JSON.parse(fs.readFileSync('accounts.json'));
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-const config = JSON.parse(fs.readFileSync('config.json'));
-const accounts = JSON.parse(fs.readFileSync('accounts.json'));
+const sessionMiddleware = session({resave: false, saveUninitialized: false, secret: config.secret});
 
 const admins = Array.isArray(config.admins) ? config.admins : [config.admins];
 
@@ -27,12 +29,9 @@ const generateAuthCodes = () => {
 
 setInterval(generateAuthCodes, 1000);
 
-
-const sessionMiddleware = session({resave: false, saveUninitialized: false, secret: config.secret});
-
 app.use(express.static(__dirname + '/build/'));
 app.use(sessionMiddleware);
-app.use(steam.middleware({realm: `${config.website}:${config.port}/`, verify: `${config.website}:${config.port}/verify`, apiKey: config.apiKey}));
+app.use(steam.middleware({realm: `${config.website}/`, verify: `${config.website}/verify`, apiKey: config.apiKey}));
 io.use((socket, next) => sessionMiddleware(socket.request, {}, next));
 
 app.get('/login', steam.authenticate(), (req, res) => {
