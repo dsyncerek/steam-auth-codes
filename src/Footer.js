@@ -5,7 +5,7 @@ export default class Header extends React.Component {
         let {user} = this.props;
         return (
             <footer className="container footer">
-                <a className="link" href="https://github.com/dsyncerek/steam-authcodes">Github</a>
+                <a className="link" href="https://github.com/dsyncerek/steam-authcodes">GitHub</a>
                 {user && <a className="link" href="/logout">Logout</a>}
             </footer>
         )
