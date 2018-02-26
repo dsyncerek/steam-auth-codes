@@ -1,5 +1,5 @@
 {
-    "name": "@dsyncerek/steam-prices-auth-codes",
+    "name": "steam-auth-codes",
     "version": "2.0.0",
     "dependencies": {
         "express": "*",
