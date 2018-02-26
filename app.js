@@ -3,31 +3,21 @@ const http = require('http');
 const socketIO = require('socket.io');
 const session = require('express-session');
 const steam = require('steam-login');
-const SteamTotp = require('steam-totp');
 const fs = require('fs');
+const AuthCodesEmitter = require('./lib/generateAuthCodes.js');
 
 const config = JSON.parse(fs.readFileSync('config.json'));
 const accounts = JSON.parse(fs.readFileSync('accounts.json'));
+
+const admins = Array.isArray(config.admins) ? config.admins : [config.admins];
+
+const authCodes = new AuthCodesEmitter(accounts);
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
 const sessionMiddleware = session({resave: false, saveUninitialized: false, secret: config.secret});
-
-const admins = Array.isArray(config.admins) ? config.admins : [config.admins];
-
-const generateAuthCodes = () => {
-    let changed = false;
-    accounts.forEach(acc => {
-        let code = SteamTotp.generateAuthCode(acc.shared);
-        if (acc.code !== code) changed = true;
-        acc.code = code;
-    });
-    if (changed) io.to('codes').emit('codes', accounts);
-};
-
-setInterval(generateAuthCodes, 1000);
 
 app.use(express.static(__dirname + '/build/'));
 app.use(sessionMiddleware);
@@ -68,6 +58,10 @@ io.on('connection', socket => {
     } else {
         socket.emit('not logged');
     }
+});
+
+authCodes.on('new auth codes', authCodes => {
+    io.to('codes').emit('codes', authCodes);
 });
 
 server.listen(config.port);
