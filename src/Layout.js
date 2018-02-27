@@ -26,14 +26,14 @@ export default class Layout extends React.Component {
     handleSocket() {
         let socket = io(socketUrl);
         socket.on('logged', data => {
-            this.setState({state: 'logged', codes: data.codes, user: data.user, time: 30});
+            this.setState({state: 'logged', authData: data.authData, user: data.user, time: 30});
             this.startTimeInterval();
         });
         socket.on('not logged', () => {
             this.setState({state: 'not logged'});
         });
-        socket.on('codes', codes => {
-            this.setState({codes, time: 30});
+        socket.on('auth codes', authData => {
+            this.setState({authData, time: 30});
             this.startTimeInterval();
         });
     }
@@ -43,13 +43,11 @@ export default class Layout extends React.Component {
 
         let main = <MainLogged user={this.state.user}/>;
         if (this.state.state === 'not logged') main = <MainLogin/>;
-        else if (this.state.codes) main = <MainList time={this.state.time} codes={this.state.codes}/>;
+        else if (this.state.authData) main = <MainList time={this.state.time} authData={this.state.authData}/>;
 
         return (
             <div>
-                <Header/>
-                {main}
-                <Footer user={this.state.user}/>
+                <Header/> {main} <Footer user={this.state.user}/>
             </div>
         )
     }

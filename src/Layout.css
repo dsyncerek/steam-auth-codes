@@ -26,7 +26,7 @@ body {
 
 .footer {
     text-align: center;
-    margin-bottom: 30px;
+    margin-boxtom: 30px;
 }
 
 .footer a {
@@ -47,15 +47,15 @@ body {
     text-decoration: none;
     transition: 0.3s;
     color: #00adee;
-    border-bottom: 1px solid transparent;
+    border-boxtom: 1px solid transparent;
 }
 
 .link:hover, .link:focus {
     color: #eeeeee;
-    border-bottom: 1px solid #00adee;
+    border-boxtom: 1px solid #00adee;
 }
 
-.bot {
+.box {
     text-align: center;
     padding: 20px;
     margin: 10px;
@@ -65,21 +65,21 @@ body {
     border: 1px solid rgba(238, 238, 238, 0.25);
 }
 
-.bot--red .bot__code {
+.box--red .box__code {
     color: #cd201f;
 }
 
-.bot--red .bot__bar {
+.box--red .box__bar {
     background: #cd201f;
 }
 
-.bot__code {
+.box__code {
     font-size: 30px;
     font-weight: bold;
     display: block;
 }
 
-.bot__bar {
+.box__bar {
     height: 7px;
     background: #00adee;
     margin: 10px 0 5px;
@@ -87,7 +87,7 @@ body {
     display: inline-block;
 }
 
-.bot__name {
+.box__name {
     display: block;
     color: #00adee;
 }
