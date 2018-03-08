@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class MainLogin extends React.Component {
+export default class Login extends React.Component {
     render() {
         return (
             <main className="container main main--login">

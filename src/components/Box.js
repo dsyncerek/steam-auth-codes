@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Bot extends React.Component {
+export default class Box extends React.Component {
     render() {
         let {item, time} = this.props;
         return (

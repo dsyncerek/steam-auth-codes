@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class MainLogged extends React.Component {
+export default class Forbidden extends React.Component {
     render() {
         let {user} = this.props;
         return (

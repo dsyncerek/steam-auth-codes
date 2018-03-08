@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '../components/Box';
 
-export default class MainList extends React.Component {
+export default class List extends React.Component {
     render() {
         let {authData, time} = this.props;
         return (
