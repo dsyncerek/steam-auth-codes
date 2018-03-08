@@ -5,16 +5,14 @@ module.exports = (io, sessionMiddleware) => {
 
     io.on('connection', socket => {
         let user = socket.request.session.steamUser || {};
-        let access = config.admins.includes(user.steamid);
-        if (user.steamid && access) {
-            user = user._json;
+        let access = config.admins.includes(user.steamid) || !config.loginRequired;
+        if (access) {
             socket.join('auth codes room');
-            socket.emit('logged', {user, authData: config.accounts});
+            socket.emit('authorized', config.accounts);
         } else if (user.steamid) {
-            user = user._json;
-            socket.emit('logged', {user});
+            socket.emit('forbidden', user._json);
         } else {
-            socket.emit('not logged');
+            socket.emit('unauthorized');
         }
     });
 };

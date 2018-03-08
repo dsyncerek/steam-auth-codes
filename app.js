@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 const session = require('express-session');
-const AuthCodesEmitter = require('./lib/generateAuthCodes.js');
+const AuthCodesEmitter = require('./lib/authCodesEmitter.js');
 const config = require('./config.js');
 
 const authCodesEmitter = new AuthCodesEmitter(config.accounts);

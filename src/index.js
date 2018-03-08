@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 import List from "./containers/List";
 import Login from "./containers/Login";
-import Unauthorized from "./containers/Unauthorized";
+import Forbidden from "./containers/Forbidden";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './styles.css';
@@ -26,12 +26,15 @@ class App extends React.Component {
 
     handleSocket() {
         let socket = io(socketUrl);
-        socket.on('logged', data => {
-            this.setState({state: 'logged', authData: data.authData, user: data.user, time: 30});
+        socket.on('authorized', authData => {
+            this.setState({state: 'authorized', authData, time: 30});
             this.startTimeInterval();
         });
-        socket.on('not logged', () => {
-            this.setState({state: 'not logged'});
+        socket.on('forbidden', user => {
+            this.setState({state: 'forbidden', user});
+        });
+        socket.on('unauthorized', () => {
+            this.setState({state: 'unauthorized'});
         });
         socket.on('auth codes', authData => {
             this.setState({authData, time: 30});
@@ -42,9 +45,9 @@ class App extends React.Component {
     render() {
         if (!this.state.state) return <Header/>;
 
-        let main = <Unauthorized user={this.state.user}/>;
-        if (this.state.state === 'not logged') main = <Login/>;
-        else if (this.state.authData) main = <List time={this.state.time} authData={this.state.authData}/>;
+        let main = <Login/>;
+        if (this.state.state === 'forbidden') main = <Forbidden user={this.state.user}/>;
+        else if (this.state.state === 'authorized') main = <List time={this.state.time} authData={this.state.authData}/>;
 
         return (
             <React.Fragment>

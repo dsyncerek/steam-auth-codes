@@ -1,4 +1,5 @@
 module.exports = {
+    loginRequired: false,
     admins: ["STEAMID64"],
     website: "http://localhost:3005",
     port: "3005",

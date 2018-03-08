@@ -25,6 +25,6 @@ module.exports = (app, sessionMiddleware) => {
     });
 
     app.get('/data', steam.enforceLogin('/'), (req, res) => {
-        config.admins.includes(req.user.steamid) ? res.send(config.accounts) : res.redirect('/');
+        config.admins.includes(req.user.steamid) || !config.loginRequired ? res.send(config.accounts) : res.redirect('/');
     });
 };
