@@ -24,7 +24,8 @@ module.exports = (app, sessionMiddleware, authCodesEmitter) => {
         res.send(req.user._json);
     });
 
-    app.get('/data', steam.enforceLogin('/'), (req, res) => {
-        config.admins.includes(req.user.steamid) || !config.loginRequired ? res.send(authCodesEmitter.getAuthCodes()) : res.redirect('/');
+    app.get('/data', (req, res) => {
+        if (!config.loginRequired || (req.user && config.admins.includes(req.user.steamid))) res.send(authCodesEmitter.getAuthCodes());
+        else res.redirect('/');
     });
 };
