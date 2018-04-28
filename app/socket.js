@@ -5,7 +5,7 @@ module.exports = (io, sessionMiddleware, authCodesEmitter) => {
     io.use((socket, next) => sessionMiddleware(socket.request, {}, next));
 
     io.on('connection', socket => {
-        let user = socket.request.session.steamUser || {};
+        let user = (socket.request.session.steamUser && socket.request.session.steamUser._json) || {};
         let access = config.admins.includes(user.steamid) || !config.loginRequired;
         if (access) {
             socket.join('auth codes room');

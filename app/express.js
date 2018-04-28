@@ -26,8 +26,7 @@ module.exports = (app, sessionMiddleware, authCodesEmitter) => {
     });
 
     app.get('/accounts', (req, res) => {
-        console.log(config.accounts);
-        if (!config.loginRequired || (req.user && config.admins.includes(req.user.steamid))) res.send(authCodesEmitter.getAuthCodes());
+        if (!config.loginRequired || (req.user && config.admins.includes(req.user._json.steamid))) res.send(authCodesEmitter.getAuthCodes());
         else res.redirect('/');
     });
 
