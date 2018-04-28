@@ -1,6 +1,7 @@
 const config = require('../config.js');
 
 module.exports = (io, sessionMiddleware, authCodesEmitter) => {
+
     io.use((socket, next) => sessionMiddleware(socket.request, {}, next));
 
     io.on('connection', socket => {
@@ -15,4 +16,5 @@ module.exports = (io, sessionMiddleware, authCodesEmitter) => {
             socket.emit('unauthorized');
         }
     });
+
 };

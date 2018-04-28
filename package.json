@@ -6,7 +6,8 @@
         "socket.io": "*",
         "express-session": "*",
         "steam-login": "*",
-        "steam-totp": "*"
+        "steam-totp": "*",
+        "socket.io-client": "*"
     },
     "devDependencies": {
         "react": "^16.2.0",

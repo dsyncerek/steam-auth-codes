@@ -3,10 +3,10 @@ import Box from '../components/Box';
 
 export default class List extends React.Component {
     render() {
-        let {authData, time} = this.props;
+        let {accounts, expire} = this.props;
         return (
             <main className="container main main--codes">
-                {authData.map((item, i) => <Box time={time} key={i} item={item}/>)}
+                {accounts.map((account, i) => <Box expire={expire} key={i} account={account}/>)}
             </main>
         );
     }
