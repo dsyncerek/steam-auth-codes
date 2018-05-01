@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Box extends React.Component {
+export class Box extends React.Component {
     render() {
         let {account, expire} = this.props;
         return (

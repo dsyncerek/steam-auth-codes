@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Footer extends React.Component {
+export class Footer extends React.Component {
     render() {
         let {logged} = this.props;
         return (
