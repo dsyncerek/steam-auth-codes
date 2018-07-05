@@ -1,65 +1,80 @@
-import React from 'react';
-import io from 'socket.io-client';
-import {Header} from './components/Header';
-import {Forbidden} from './containers/Forbidden';
-import {List} from './containers/List';
-import {Login} from './containers/Login';
-import {Footer} from './components/Footer';
+import React       from 'react';
+import io          from 'socket.io-client';
+import styled      from 'styled-components';
+import Header      from './components/Header';
+import Footer      from './components/Footer';
+import Information from './components/Information';
+import LoginButton from './components/LoginButton';
+import AccountList from './components/AccountList';
 
-const socketUrl = 'http://codes.loscsgo.com:3005/';
+const Wrapper = styled.main`
+    background: #eee;
+    padding: 100px 0;
+`;
 
-export class App extends React.Component {
+export default class App extends React.Component {
 
     constructor() {
         super();
-        this.state = {};
+        this.state = {socketState: 'loading'};
+    }
+
+    componentDidMount() {
         this.handleSocket();
     }
 
     startTimeInterval() {
         clearInterval(this.intervalHandle);
-
         this.intervalHandle = setInterval(() => {
             this.setState({expire: this.state.expire - 1});
         }, 1000);
     }
 
     handleSocket() {
-        let socket = io(socketUrl);
-
-        socket.on('authorized', data => {
-            this.setState({state: 'authorized', accounts: data.accounts, expire: data.expire});
+        io('localhost:3005/').on('connect', () => {
+            this.setState({socketState: 'connected'});
+        }).on('connect_error', () => {
+            this.setState({socketState: 'errored'});
+        }).on('disconnect', () => {
+            this.setState({socketState: 'disconnected'});
+        }).on('forbidden', () => {
+            this.setState({userState: 'forbidden'});
+        }).on('unauthorized', () => {
+            this.setState({userState: 'unauthorized'});
+        }).on('authorized', data => {
+            this.setState({userState: 'authorized', accounts: data.accounts, expire: data.expire});
             this.startTimeInterval();
-        });
-
-        socket.on('forbidden', user => {
-            this.setState({state: 'forbidden', user});
-        });
-
-        socket.on('unauthorized', () => {
-            this.setState({state: 'unauthorized'});
-        });
-
-        socket.on('auth codes', data => {
+        }).on('auth codes', data => {
             this.setState({accounts: data.accounts, expire: data.expire});
             this.startTimeInterval();
         });
     }
 
     render() {
-        if (!this.state.state) return <Header/>;
+        let {socketState, userState} = this.state;
+        let logged = ['forbidden', 'authorized'].includes(userState);
 
         return (
             <React.Fragment>
                 <Header/>
-                <React.Fragment>
-                    {this.state.state === 'forbidden' && <Forbidden user={this.state.user}/>}
-                    {this.state.state === 'authorized' && <List expire={this.state.expire} accounts={this.state.accounts}/>}
-                    {this.state.state === 'unauthorized' && <Login/>}
-                </React.Fragment>
-                <Footer logged={['forbidden', 'authorized'].includes(this.state.state)}/>
+                <Wrapper>
+                    {socketState === 'loading' &&
+                    <Information><p>Trwa nawiązywanie połączenia z serwerem.</p></Information>}
+                    {socketState === 'disconnected' &&
+                    <Information><p>Połączenie z serwerem zostało zakończone.</p></Information>}
+                    {socketState === 'errored' &&
+                    <Information><p>Nie udało się nawiązać połączenia z serwerem.</p></Information>}
+                    {socketState === 'connected' && userState === undefined &&
+                    <Information><p>Połączenie z serwerem zostało nawiązane.</p></Information>}
+                    {socketState === 'connected' && userState === 'unauthorized' &&
+                    <Information><LoginButton/></Information>}
+                    {socketState === 'connected' && userState === 'forbidden' &&
+                    <Information><p>Nie masz wystarczających uprawnień.</p></Information>}
+                    {socketState === 'connected' && userState === 'authorized' &&
+                    <AccountList expire={this.state.expire} accounts={this.state.accounts}/>}
+                </Wrapper>
+                <Footer logged={logged}/>
             </React.Fragment>
         );
     }
-
 }

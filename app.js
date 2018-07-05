@@ -13,7 +13,7 @@ const io = socketIO(server);
 
 const sessionMiddleware = session({resave: false, saveUninitialized: false, secret: config.secret});
 
-require('./app/express.js')(app, sessionMiddleware, authCodesEmitter);
+require('./app/express.js')(app, sessionMiddleware);
 require('./app/socket.js')(io, sessionMiddleware, authCodesEmitter);
 require('./app/codes.js')(io, authCodesEmitter);
 

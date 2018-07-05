@@ -1,11 +1,25 @@
-import React from 'react';
+import React  from 'react';
+import styled from 'styled-components';
 
-export class Header extends React.Component {
-    render() {
-        return (
-            <header className="container header">
-                <h1 className="header__heading">Steam AuthCodes</h1>
-            </header>
-        )
-    }
-}
+const Wrapper = styled.header`
+    text-align: center;
+    padding: 50px 10px;
+`;
+
+const Title = styled.h1`
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    word-spacing: 5px;
+    color: #eee;
+`;
+
+const Header = () => {
+    return (
+        <Wrapper>
+            <Title>Steam AuthCodes</Title>
+        </Wrapper>
+    );
+};
+
+export default Header;
