@@ -2,22 +2,25 @@
     "name": "steam-auth-codes",
     "version": "4.0.0",
     "dependencies": {
-        "express-session": "*",
-        "steam-login": "*",
-        "steam-totp": "*",
-        "socket.io": "*",
-        "socket.io-client": "*",
-        "express": "latest"
+        "express": "^4.16.3",
+        "express-session": "^1.15.6",
+        "socket.io": "^2.1.1",
+        "socket.io-client": "^2.1.1",
+        "steam-login": "^0.1.7",
+        "steam-totp": "^2.1.0"
     },
     "devDependencies": {
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0",
+        "enzyme": "^3.3.0",
+        "enzyme-adapter-react-16": "^1.1.1",
+        "prop-types": "^15.6.2",
+        "react": "^16.4.1",
+        "react-dom": "^16.4.1",
         "react-scripts": "1.1.1",
-        "styled-components": "^3.3.3",
-        "prop-types": "latest"
+        "styled-components": "^3.3.3"
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "react-scripts build"
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=node"
     }
 }
