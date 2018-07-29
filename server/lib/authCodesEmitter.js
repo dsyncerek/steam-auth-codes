@@ -23,19 +23,8 @@ class AuthCodesEmitter extends EventEmitter {
         clearInterval(this.intervalHandle);
     }
 
-    generateAuthCodes() {
-        let changed = false;
-        this.accounts.forEach(account => {
-            let authCode = SteamTotp.generateAuthCode(account.shared);
-            if (account.authCode !== authCode) {
-                changed = true;
-                account.authCode = authCode;
-            }
-        });
-        if (changed) {
-            this.expire = 30;
-            setImmediate(() => this.emit('new auth codes', this.getAuthCodes()));
-        }
+    forceEmit() {
+        setImmediate(() => this.emit('new auth codes', this.getAuthCodes()));
     }
 
     getAuthCodes() {
@@ -44,6 +33,25 @@ class AuthCodesEmitter extends EventEmitter {
             accounts: this.accounts.map(account => ({username: account.username, authCode: account.authCode})),
         };
     }
+
+    static generateSingleAuthCode(shared) {
+        return SteamTotp.generateAuthCode(shared);
+    }
+
+    generateAuthCodes() {
+        let changed = false;
+        this.accounts.forEach(account => {
+            let authCode = AuthCodesEmitter.generateSingleAuthCode(account.shared);
+            if (account.authCode !== authCode) {
+                changed = true;
+                account.authCode = authCode;
+            }
+        });
+        if (changed) {
+            this.expire = 30;
+            this.forceEmit();
+        }
+    }
 }
 
-module.exports = AuthCodesEmitter;
+module.exports = accounts => new AuthCodesEmitter(accounts);

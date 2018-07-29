@@ -1,7 +1,7 @@
 import React     from 'react';
 import PropTypes from 'prop-types';
 import styled    from 'styled-components';
-import Box       from './AccountBox';
+import Box       from '../containers/AccountBox';
 
 const Wrapper = styled.div`
     display: flex;
