@@ -12,7 +12,7 @@ const io = socketIO(server);
 
 const sessionMiddleware = session({resave: false, saveUninitialized: false, secret: config.secret});
 
-app.use(express.static(`${__dirname}/../../client/build/`))
+app.use(express.static(`${__dirname}/../client/build/`))
    .use(sessionMiddleware)
    .use(steam.middleware({realm: `${config.website}/`, verify: `${config.website}/verify`, apiKey: config.apiKey}))
    .get('/login', steam.authenticate(), (req, res) => res.redirect('/'))
