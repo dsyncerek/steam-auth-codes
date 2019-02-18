@@ -1,10 +1,10 @@
 {
-    "name": "steam-auth-codes",
-    "version": "1.0.0",
-    "scripts": {
-        "client:start": "cd client && npm run start",
-        "client:build": "cd client && npm run build",
-        "server:start": "cd server && npm run start",
-        "deploy": "cd client && npm run build && cd .. && cd server && npm run start"
-    }
+  "name": "steam-auth-codes",
+  "version": "1.0.0",
+  "scripts": {
+    "client:start": "cd client && npm run start",
+    "client:build": "cd client && npm run build",
+    "server:start": "cd server && npm run start",
+    "deploy": "cd client && npm run build && cd .. && cd server && npm run start"
+  }
 }

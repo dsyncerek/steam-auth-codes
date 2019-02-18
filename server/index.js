@@ -1,41 +1,42 @@
 const express = require('express');
-const http = require('http');
 const socketIO = require('socket.io');
-const session = require('express-session');
-const steam = require('steam-login');
-const config = require('./config/config.js');
-const emitter = require('./lib/authCodesEmitter.js')(config.accounts);
+const sharedSession = require('express-socket.io-session');
+const middlewares = require('./app/middlewares');
+const getStatusCode = require('./app/getStatusCode');
+const AccountsManager = require('./lib/AccountsManager');
+const config = require('./config');
 
 const app = express();
-const server = http.createServer(app).listen(config.port);
+const server = app.listen(config.port);
 const io = socketIO(server);
 
-const sessionMiddleware = session({resave: false, saveUninitialized: false, secret: config.secret});
+app.use(express.static(`${__dirname}/../client/build/`));
+app.use(middlewares.session);
+app.use(middlewares.steam);
+io.use(sharedSession(middlewares.session));
 
-app.use(express.static(`${__dirname}/../client/build/`))
-   .use(sessionMiddleware)
-   .use(steam.middleware({realm: `${config.website}/`, verify: `${config.website}/verify`, apiKey: config.apiKey}))
-   .get('/login', steam.authenticate(), (req, res) => res.redirect('/'))
-   .get('/verify', steam.verify(), (req, res) => res.redirect('/'))
-   .get('/logout', steam.enforceLogin('/'), (req, res) => {
-       req.logout();
-       res.redirect('/');
-   });
+require('./app/steamRoutes')(app);
 
-io.use((socket, next) => sessionMiddleware(socket.request, {}, next))
-  .on('connection', socket => {
-      let user = (socket.request.session.steamUser && socket.request.session.steamUser._json) || {};
-      let access = config.admins.includes(user.steamid) || !config.loginRequired;
+const accountsManager = new AccountsManager(config.accounts);
 
-      if (access === true) {
-          socket.join('auth codes room').emit('userState', 'authorized');
-          emitter.forceEmit();
-      } else if (user.steamid !== undefined) {
-          socket.emit('userState', 'forbidden');
-      } else {
-          socket.emit('userState', 'unauthorized');
-      }
+accountsManager.on('accounts', list => {
+  io.to('accounts room').emit('accounts', {
+    accounts: list,
+  });
+});
+
+io.on('connection', socket => {
+  const { steamid, username } = socket.handshake.session.steamUser || {};
+  const statusCode = getStatusCode(steamid);
+  const hasAccess = statusCode === '200';
+
+  socket.emit('init', {
+    statusCode,
+    username,
+    accounts: hasAccess ? accountsManager.accounts : [],
   });
 
-emitter.on('new auth codes', accounts =>
-    io.to('auth codes room').emit('auth codes', accounts));
+  if (hasAccess) {
+    socket.join('accounts room');
+  }
+});
