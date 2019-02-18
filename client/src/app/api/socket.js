@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import socketStates from './socketStates';
-import { SOCKET_URL } from '../../config';
+import { SOCKET_URL } from '../config';
 
 const socket = io(SOCKET_URL);
 
