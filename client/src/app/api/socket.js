@@ -24,4 +24,3 @@ io(SOCKET_URL)
   });
 
 export default emitter;
-

@@ -12,6 +12,7 @@ class Account extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.code !== this.props.code) {
+      this.stopTimeInterval();
       this.startTimeInterval();
     }
   }
@@ -25,8 +26,6 @@ class Account extends Component {
   }
 
   startTimeInterval() {
-    this.stopTimeInterval();
-
     this.intervalHandle = setInterval(() => {
       const validity = this.state.validity - CODE_DECREASE_INTERVAL;
       this.setState({ validity });
