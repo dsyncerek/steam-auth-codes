@@ -1,17 +1,16 @@
 const steam = require('steam-login');
 const session = require('express-session');
-const config = require('../config');
 
 const steamMiddleware = steam.middleware({
-  realm: `${config.website}/`,
-  verify: `${config.website}/verify`,
-  apiKey: config.steamApiKey,
+  realm: new URL('/', process.env.URL).href,
+  verify: new URL('/verify', process.env.URL).href,
+  apiKey: process.env.STEAM_API_KEY,
 });
 
 const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
-  secret: config.sessionSecret,
+  secret: process.env.SESSION_SECRET,
 });
 
 module.exports = {

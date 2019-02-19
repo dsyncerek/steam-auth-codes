@@ -1,7 +1,7 @@
 const EventEmitter = require('events');
 const Account = require('./Account');
 
-class AccountsManager extends EventEmitter {
+class Emitter extends EventEmitter {
   constructor(accounts = []) {
     super();
 
@@ -26,4 +26,4 @@ class AccountsManager extends EventEmitter {
   }
 }
 
-module.exports = AccountsManager;
+module.exports = Emitter;
