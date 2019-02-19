@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Section from '../Section/Section';
 
-const Layout = ({ username, children }) => (
+const Layout = ({ children }) => (
   <>
     <Section as="div">
       <Header/>
@@ -13,13 +13,12 @@ const Layout = ({ username, children }) => (
       {children}
     </Section>
     <Section as="div">
-      <Footer username={username}/>
+      <Footer/>
     </Section>
   </>
 );
 
 Layout.propTypes = {
-  username: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
