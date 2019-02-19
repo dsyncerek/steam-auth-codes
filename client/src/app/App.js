@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import socketApi from './api/socket';
 import Layout from './components/Layout/Layout';
-import Row from './components/Accounts/Accounts';
+import Accounts from './components/Accounts/Accounts';
 import LoginWrapper from './components/LoginWrapper/LoginWrapper';
+import StatusContext from './context/StatusContext';
 
 class App extends Component {
   state = {
-    socketState: 'loading',
+    accounts: [],
+    status: {
+      socketState: 'loading',
+      statusCode: '',
+      username: '',
+    },
   };
 
   componentDidMount() {
@@ -14,25 +20,43 @@ class App extends Component {
   }
 
   handleSocket() {
-    socketApi.onAccountsChanged(({ accounts }) =>
-      this.setState({ accounts }));
+    socketApi.onAccountsChanged(({ accounts }) => {
+      this.setState({
+        accounts,
+      });
+    });
 
-    socketApi.onSocketStateChanged(socketState =>
-      this.setState({ socketState, statusCode: undefined }));
+    socketApi.onSocketStateChanged(socketState => {
+      this.setState({
+        status: {
+          ...this.state.status,
+          socketState,
+          statusCode: undefined,
+        },
+      });
+    });
 
-    socketApi.onInit(({ statusCode, username, accounts }) =>
-      this.setState({ statusCode, username, accounts }));
+    socketApi.onInit(({ statusCode, username, accounts }) => {
+      this.setState({
+        accounts,
+        status: {
+          ...this.state.status,
+          statusCode,
+          username,
+        },
+      });
+    });
   }
 
   render() {
-    const { socketState, statusCode, accounts, username } = this.state;
-
     return (
-      <Layout username={username}>
-        <LoginWrapper socketState={socketState} statusCode={statusCode}>
-          <Row accounts={accounts}/>
-        </LoginWrapper>
-      </Layout>
+      <StatusContext.Provider value={this.state.status}>
+        <Layout>
+          <LoginWrapper>
+            <Accounts accounts={this.state.accounts}/>
+          </LoginWrapper>
+        </Layout>
+      </StatusContext.Provider>
     );
   }
 }

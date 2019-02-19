@@ -1,23 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+import StatusContext from '../../context/StatusContext';
 import TextLink from '../TextLink/TextLink';
 import { FooterStyled, HeartStyled } from './Footer.styled';
 
-const Footer = ({ username }) => (
-  <FooterStyled>
-    {username && (
-      <p>
-        Hello {username}, <TextLink href="/logout">Logout</TextLink>!
-      </p>
-    )}
-    <p>
-      Created with <HeartStyled>❤</HeartStyled> by <TextLink href="https://dsyncerek.pl/">dsyncerek</TextLink>.
-    </p>
-  </FooterStyled>
-);
+const Footer = () => {
+  const { username } = useContext(StatusContext);
 
-Footer.propTypes = {
-  username: PropTypes.string,
+  return (
+    <FooterStyled>
+      {username && (
+        <p>
+          Hello {username}, <TextLink href="/logout">Logout</TextLink>!
+        </p>
+      )}
+      <p>
+        Created with <HeartStyled>❤</HeartStyled> by <TextLink href="https://dsyncerek.pl/">dsyncerek</TextLink>.
+      </p>
+    </FooterStyled>
+  );
 };
 
 export default Footer;

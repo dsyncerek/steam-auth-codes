@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import socketStates from '../../api/socketStates';
 import statusCodes from '../../api/statusCodes';
+import StatusContext from '../../context/StatusContext';
 import LoginButton from '../LoginButton/LoginButton';
 import Message from '../Message/Message';
 
-const LoginWrapper = ({ socketState, statusCode, children }) => {
+const LoginWrapper = ({ children }) => {
+  const { socketState, statusCode } = useContext(StatusContext);
   const loading = socketState === socketStates.loading || (socketState === socketStates.connected && !statusCode);
   const error = socketState === socketStates.error;
   const loginRequired = statusCode === statusCodes.unauthorized;
@@ -45,8 +47,6 @@ const LoginWrapper = ({ socketState, statusCode, children }) => {
 };
 
 LoginWrapper.propTypes = {
-  socketState: PropTypes.string,
-  statusCode: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
