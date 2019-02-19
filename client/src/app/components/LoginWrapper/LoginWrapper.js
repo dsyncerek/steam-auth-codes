@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import { responseStatus, socketStatus } from '../../api/enums';
 import StatusContext from '../../context/StatusContext';
 import LoginButton from '../LoginButton/LoginButton';

@@ -1,5 +1,5 @@
-import io from 'socket.io-client';
 import { EventEmitter } from 'fbemitter';
+import io from 'socket.io-client';
 import { SOCKET_URL } from '../config';
 import { socketStatus } from './enums';
 

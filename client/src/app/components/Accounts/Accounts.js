@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import Account from '../Account/Account';
 import { AccountsStyled } from './Accounts.styled';
 

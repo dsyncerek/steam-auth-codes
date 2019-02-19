@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { socketStatus } from './api/enums';
 import api from './api/socket';
-import Layout from './components/Layout/Layout';
 import Accounts from './components/Accounts/Accounts';
+import Layout from './components/Layout/Layout';
 import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 import StatusContext from './context/StatusContext';
-import { theme } from './styles/variables';
 import GlobalStyles from './styles/global';
+import { theme } from './styles/variables';
 
 class App extends Component {
   state = {

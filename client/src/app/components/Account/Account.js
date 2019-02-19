@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { CODE_DECREASE_INTERVAL, CODE_ENDING_TIME, CODE_VALIDITY_TIME } from '../../config';
 import { AccountStyled, BarStyled, CodeStyled, UsernameStyled } from './Account.styled';
 
