@@ -1,30 +1,27 @@
 import io from 'socket.io-client';
-import socketStates from './socketStates';
+import { EventEmitter } from 'fbemitter';
 import { SOCKET_URL } from '../config';
+import { socketStatus } from './enums';
 
-const socket = io(SOCKET_URL);
+const emitter = new EventEmitter();
 
-function onInit(callback) {
-  socket.on('init', ({ statusCode, username, accounts }) =>
-    callback({ statusCode, username, accounts }));
-}
+io(SOCKET_URL)
+  .on('init', ({ statusCode, username, accounts }) => {
+    emitter.emit('status', { statusCode, username });
+    emitter.emit('accounts', { accounts });
+  })
+  .on('accounts', ({ accounts }) => {
+    emitter.emit('accounts', { accounts });
+  })
+  .on('connect', () => {
+    emitter.emit('status', { socketState: socketStatus.connected });
+  })
+  .on('connect_error', () => {
+    emitter.emit('status', { socketState: socketStatus.error });
+  })
+  .on('disconnect', () => {
+    emitter.emit('status', { socketState: socketStatus.loading });
+  });
 
-function onAccountsChanged(callback) {
-  socket.on('accounts', ({ accounts }) =>
-    callback({ accounts }));
-}
+export default emitter;
 
-function onSocketStateChanged(callback) {
-  socket.on('connect', () =>
-          callback(socketStates.connected))
-        .on('connect_error', () =>
-          callback(socketStates.error))
-        .on('disconnect', () =>
-          callback(socketStates.loading));
-}
-
-export default {
-  onInit,
-  onAccountsChanged,
-  onSocketStateChanged,
-};

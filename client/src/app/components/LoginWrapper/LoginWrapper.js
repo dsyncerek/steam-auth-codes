@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import socketStates from '../../api/socketStates';
-import statusCodes from '../../api/statusCodes';
+import { responseStatus, socketStatus } from '../../api/enums';
 import StatusContext from '../../context/StatusContext';
 import LoginButton from '../LoginButton/LoginButton';
 import Message from '../Message/Message';
 
 const LoginWrapper = ({ children }) => {
   const { socketState, statusCode } = useContext(StatusContext);
-  const loading = socketState === socketStates.loading || (socketState === socketStates.connected && !statusCode);
-  const error = socketState === socketStates.error;
-  const loginRequired = statusCode === statusCodes.unauthorized;
-  const permissionRequired = statusCode === statusCodes.forbidden;
+  const loading = socketState === socketStatus.loading || (socketState === socketStatus.connected && !statusCode);
+  const error = socketState === socketStatus.error;
+  const loginRequired = statusCode === responseStatus.unauthorized;
+  const permissionRequired = statusCode === responseStatus.forbidden;
 
   if (loading) {
     return (

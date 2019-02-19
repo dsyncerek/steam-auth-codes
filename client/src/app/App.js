@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
-import socketApi from './api/socket';
+import { socketStatus } from './api/enums';
+import api from './api/socket';
 import Layout from './components/Layout/Layout';
 import Accounts from './components/Accounts/Accounts';
 import LoginWrapper from './components/LoginWrapper/LoginWrapper';
@@ -12,7 +13,7 @@ class App extends Component {
   state = {
     accounts: [],
     status: {
-      socketState: 'loading',
+      socketState: socketStatus.loading,
       statusCode: '',
       username: '',
     },
@@ -23,31 +24,12 @@ class App extends Component {
   }
 
   handleSocket() {
-    socketApi.onAccountsChanged(({ accounts }) => {
-      this.setState({
-        accounts,
-      });
+    api.addListener('accounts', ({ accounts }) => {
+      this.setState({ accounts });
     });
 
-    socketApi.onSocketStateChanged(socketState => {
-      this.setState({
-        status: {
-          ...this.state.status,
-          socketState,
-          statusCode: undefined,
-        },
-      });
-    });
-
-    socketApi.onInit(({ statusCode, username, accounts }) => {
-      this.setState({
-        accounts,
-        status: {
-          ...this.state.status,
-          statusCode,
-          username,
-        },
-      });
+    api.addListener('status', ({ socketState, statusCode, username }) => {
+      this.setState({ status: { socketState, statusCode, username } });
     });
   }
 
