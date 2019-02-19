@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { ThemeProvider } from 'styled-components';
 import socketApi from './api/socket';
 import Layout from './components/Layout/Layout';
 import Accounts from './components/Accounts/Accounts';
 import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 import StatusContext from './context/StatusContext';
+import { theme } from './styles/variables';
+import GlobalStyles from './styles/global';
 
 class App extends Component {
   state = {
@@ -51,11 +54,16 @@ class App extends Component {
   render() {
     return (
       <StatusContext.Provider value={this.state.status}>
-        <Layout>
-          <LoginWrapper>
-            <Accounts accounts={this.state.accounts}/>
-          </LoginWrapper>
-        </Layout>
+        <ThemeProvider theme={theme}>
+          <>
+            <GlobalStyles/>
+            <Layout>
+              <LoginWrapper>
+                <Accounts accounts={this.state.accounts}/>
+              </LoginWrapper>
+            </Layout>
+          </>
+        </ThemeProvider>
       </StatusContext.Provider>
     );
   }
