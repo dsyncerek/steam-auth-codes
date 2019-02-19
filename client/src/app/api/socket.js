@@ -1,11 +1,10 @@
 import { EventEmitter } from 'fbemitter';
 import io from 'socket.io-client';
-import { SOCKET_URL } from '../config';
 import { socketStatus } from './enums';
 
 const emitter = new EventEmitter();
 
-io(SOCKET_URL)
+io(process.env.REACT_APP_SOCKET_URL)
   .on('init', ({ statusCode, username, accounts }) => {
     emitter.emit('status', { statusCode, username });
     emitter.emit('accounts', { accounts });

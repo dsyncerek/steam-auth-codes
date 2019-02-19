@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { CODE_DECREASE_INTERVAL, CODE_ENDING_TIME, CODE_VALIDITY_TIME } from '../../config';
 import { AccountStyled, BarStyled, CodeStyled, UsernameStyled } from './Account.styled';
+
+const CODE_VALIDITY_TIME = 30 * 1000;
+const CODE_DECREASE_INTERVAL = 1000;
+const CODE_ENDING_TIME = 5 * 1000;
 
 class Account extends Component {
   state = {};
