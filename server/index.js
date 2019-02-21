@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const socketIO = require('socket.io');
 const sharedSession = require('express-socket.io-session');
