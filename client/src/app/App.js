@@ -3,8 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import { socketStatus } from './api/enums';
 import api from './api/socket';
 import Accounts from './components/Accounts/Accounts';
+import ContentWrapper from './components/ContentWrapper/ContentWrapper';
 import Layout from './components/Layout/Layout';
-import LoginWrapper from './components/LoginWrapper/LoginWrapper';
 import StatusContext from './context/StatusContext';
 import { GlobalStyled } from './styles/global';
 import { theme } from './styles/variables';
@@ -40,9 +40,9 @@ class App extends Component {
           <>
             <GlobalStyled/>
             <Layout>
-              <LoginWrapper>
+              <ContentWrapper>
                 <Accounts accounts={this.state.accounts}/>
-              </LoginWrapper>
+              </ContentWrapper>
             </Layout>
           </>
         </ThemeProvider>

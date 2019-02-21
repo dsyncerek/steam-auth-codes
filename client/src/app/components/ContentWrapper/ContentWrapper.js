@@ -5,7 +5,7 @@ import StatusContext from '../../context/StatusContext';
 import LoginButton from '../LoginButton/LoginButton';
 import Message from '../Message/Message';
 
-const LoginWrapper = ({ children }) => {
+const ContentWrapper = ({ children }) => {
   const { socketState, statusCode } = useContext(StatusContext);
   const loading = socketState === socketStatus.loading || (socketState === socketStatus.connected && !statusCode);
   const error = socketState === socketStatus.error;
@@ -47,8 +47,8 @@ const LoginWrapper = ({ children }) => {
   return children;
 };
 
-LoginWrapper.propTypes = {
+ContentWrapper.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default LoginWrapper;
+export default ContentWrapper;
