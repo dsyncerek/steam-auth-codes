@@ -38,7 +38,9 @@ const LoginWrapper = ({ children }) => {
 
   if (loginRequired) {
     return (
-      <LoginButton/>
+      <Message>
+        <LoginButton/>
+      </Message>
     );
   }
 
