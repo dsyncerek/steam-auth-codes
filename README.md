@@ -1,5 +1,5 @@
-[![dependencies Status](https://david-dm.org/dsyncerek/steam-auth-codes/status.svg)](https://david-dm.org/dsyncerek/www-portfolio)
-[![devDependencies Status](https://david-dm.org/dsyncerek/steam-auth-codes/dev-status.svg)](https://david-dm.org/dsyncerek/www-portfolio?type=dev)
+[![dependencies Status](https://david-dm.org/dsyncerek/steam-auth-codes/status.svg)](https://david-dm.org/dsyncerek/steam-auth-codes)
+[![devDependencies Status](https://david-dm.org/dsyncerek/steam-auth-codes/dev-status.svg)](https://david-dm.org/dsyncerek/steam-auth-codes?type=dev)
 
 
 ```
