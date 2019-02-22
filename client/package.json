@@ -1,6 +1,7 @@
 {
   "name": "steam-auth-codes-client",
   "version": "1.0.0",
+  "proxy": "http://localhost:9999/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"

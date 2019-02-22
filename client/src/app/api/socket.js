@@ -4,7 +4,7 @@ import { socketStatus } from './enums';
 
 const emitter = new EventEmitter();
 
-io(process.env.REACT_APP_SOCKET_URL)
+io('/')
   .on('init', ({ statusCode, username, accounts }) => {
     emitter.emit('status', { statusCode, username });
     emitter.emit('accounts', { accounts });
