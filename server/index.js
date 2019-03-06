@@ -11,9 +11,9 @@ const io = socketIO(server);
 require('./app/middlewares')(app, io);
 require('./app/routes')(app);
 
-codesEmitter.on('accounts', list => {
+codesEmitter.on('accounts', accounts => {
   io.to('accounts room').emit('accounts', {
-    accounts: list,
+    accounts,
   });
 });
 
