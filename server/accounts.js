@@ -1,0 +1,49 @@
+module.exports = [{
+  username: 'Dale',
+  shared: '0dfd3009-dfd1-4583-86f7-68f0dae2ee6d',
+}, {
+  username: 'Slater',
+  shared: '5f0d1131-4939-42dd-93d0-fee6b8ebe284',
+}, {
+  username: 'Alma',
+  shared: '212f40c6-74e6-46d6-a3b0-5ac55b6c8f8d',
+}, {
+  username: 'Bethany',
+  shared: 'fd4595b6-0f79-419d-8bcb-348e90276473',
+}, {
+  username: 'Lynch',
+  shared: '9ef4b4b0-fb4b-4ffb-be6f-1eb8ab142287',
+}, {
+  username: 'Clarice',
+  shared: '50dbc681-f2b6-4a48-ba9b-94fc608199db',
+}, {
+  username: 'Stanton',
+  shared: 'f1ab77a5-4e18-4f2b-92e8-700bf412c8c0',
+}, {
+  username: 'Frankie',
+  shared: '1fb6619a-571b-412d-88c7-bfe095979a6f',
+}, {
+  username: 'Hattie',
+  shared: '5b0bf8e8-1567-41a1-84e9-34dee497b2a4',
+}, {
+  username: 'Russell',
+  shared: 'ae1f882d-da9e-4a2f-bafd-f222f0d33ea8',
+}, {
+  username: 'Guadalupe',
+  shared: '2702fdd2-f948-4bc3-af53-bb134fe50b7f',
+}, {
+  username: 'Eloise',
+  shared: '8a9fc712-1105-41cc-848f-c1e56e1d553d',
+}, {
+  username: 'Joyner',
+  shared: 'b1c29b09-4b64-45d9-9091-055dd2acd57b',
+}, {
+  username: 'Dillon',
+  shared: 'af3959bc-cc93-4323-a61d-cef08ea37ea3',
+}, {
+  username: 'Verna',
+  shared: '66a99c1a-9750-4905-ad31-cd67faa08c45',
+}, {
+  username: 'Valdez',
+  shared: 'dab2fd6b-d26d-4bbd-bbb9-c3879ce95a7e',
+}];
