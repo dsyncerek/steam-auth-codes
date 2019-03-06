@@ -7,7 +7,7 @@ const Header = () => (
       Steam AuthCodes
     </TitleStyled>
     <DescriptionStyled>
-      All your Steam auth codes in one place.
+      All your Steam AuthCodes in one place.
     </DescriptionStyled>
   </HeaderStyled>
 );
