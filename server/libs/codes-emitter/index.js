@@ -32,6 +32,7 @@ class CodesEmitter extends EventEmitter {
     const validity = getValidity();
 
     setTimeout(() => {
+      this.generateCodes();
       this.emit('accounts', this.accounts);
       this.refreshCodes();
     }, validity);
