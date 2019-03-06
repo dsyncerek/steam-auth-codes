@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const sharedSession = require('express-socket.io-session');
+const compression = require('compression');
 const steamLogin = require('../libs/steam-login');
 
 const steamMiddleware = steamLogin.middleware({
@@ -16,6 +17,7 @@ const sessionMiddleware = session({
 });
 
 module.exports = (app, io) => {
+  app.use(compression());
   app.use(sessionMiddleware);
   app.use(steamMiddleware);
   app.use(express.static(path.join(__dirname, '../../client/build')));
