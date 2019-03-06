@@ -5,6 +5,7 @@
     "client:start": "cd client && npm run start",
     "client:build": "cd client && npm run build",
     "server:start": "cd server && npm run start",
+    "install": "cd client && npm install && cd .. && cd server && npm install",
     "deploy": "cd client && npm run build && cd .. && cd server && npm run start"
   }
 }
