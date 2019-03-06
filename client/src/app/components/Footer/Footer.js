@@ -14,7 +14,7 @@ const Footer = () => {
         </p>
       )}
       <p>
-        Created with <HeartStyled>❤</HeartStyled> by <TextLink href="https://dsyncerek.pl/">dsyncerek</TextLink>.
+        Created with <HeartStyled>❤</HeartStyled> by <TextLink href="https://dsyncerek.dev/">dsyncerek</TextLink>.
       </p>
     </FooterStyled>
   );
