@@ -1,10 +1,11 @@
 const openid = require('openid');
 
-function authenticate() {
-  const providerURL = 'https://steamcommunity.com/openid';
+const PROVIDER_URL = 'https://steamcommunity.com/openid';
+const IDENTIFIER_REGEX = /^https?:\/\/steamcommunity\.com\/openid\/id\/(\d+)$/;
 
+function authenticate() {
   return (req, res, next) => {
-    req.relyingParty.authenticate(providerURL, false, (err, authURL) => {
+    req.relyingParty.authenticate(PROVIDER_URL, false, (err, authURL) => {
       if (err) return next('Authentication failed: ' + err);
       if (!authURL) return next('Authentication failed.');
 
@@ -43,15 +44,13 @@ function logout() {
 }
 
 function verify() {
-  const identifierRegex = /^https?:\/\/steamcommunity\.com\/openid\/id\/(\d+)$/;
-
   return (req, res, next) => {
     req.relyingParty.verifyAssertion(req, (err, result) => {
       if (err) return next(err.message);
       if (!result || !result.authenticated) return next('Failed to authenticate user.');
-      if (!identifierRegex.test(result.claimedIdentifier)) return next('Claimed identity is not valid.');
+      if (!IDENTIFIER_REGEX.test(result.claimedIdentifier)) return next('Claimed identity is not valid.');
 
-      const steamid = identifierRegex.exec(result.claimedIdentifier)[1];
+      const steamid = IDENTIFIER_REGEX.exec(result.claimedIdentifier)[1];
 
       req.user = steamid;
       req.session.user = steamid;
