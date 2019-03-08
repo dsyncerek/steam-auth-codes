@@ -1,62 +1,39 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { AccountStyled, BarStyled, CodeStyled, UsernameStyled } from './Account.styled';
 
 const CODE_VALIDITY_TIME = 30 * 1000;
 const CODE_DECREASE_INTERVAL = 1000;
 const CODE_ENDING_TIME = 5 * 1000;
 
-class Account extends Component {
-  state = {};
+const Account = ({ code, username, validity }) => {
+  const [currentValidity, setValidity] = React.useState(0);
 
-  componentDidMount() {
-    this.startTimeInterval();
-  }
+  useEffect(() => {
+    setValidity(validity);
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.code !== this.props.code) {
-      this.stopTimeInterval();
-      this.startTimeInterval();
-    }
-  }
-
-  componentWillUnmount() {
-    this.stopTimeInterval();
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    return props.code !== state.code ? { ...props } : null;
-  }
-
-  startTimeInterval() {
-    this.intervalHandle = setInterval(() => {
-      const validity = this.state.validity - CODE_DECREASE_INTERVAL;
-      this.setState({ validity });
+    const handler = setInterval(() => {
+      setValidity(currentValidity => currentValidity - CODE_DECREASE_INTERVAL);
     }, CODE_DECREASE_INTERVAL);
-  }
 
-  stopTimeInterval() {
-    clearInterval(this.intervalHandle);
-  }
+    return () => clearInterval(handler);
+  }, [code, validity]);
 
-  render() {
-    const { code, username, validity } = this.state;
-    const barWidth = validity * 100 / CODE_VALIDITY_TIME;
-    const isEnding = validity <= CODE_ENDING_TIME;
+  const barWidth = currentValidity * 100 / CODE_VALIDITY_TIME;
+  const isEnding = currentValidity <= CODE_ENDING_TIME;
 
-    return (
-      <AccountStyled isEnding={isEnding}>
-        <CodeStyled>
-          {code}
-        </CodeStyled>
-        <BarStyled style={{ width: `${barWidth}%` }}/>
-        <UsernameStyled>
-          {username}
-        </UsernameStyled>
-      </AccountStyled>
-    );
-  }
-}
+  return (
+    <AccountStyled isEnding={isEnding}>
+      <CodeStyled>
+        {code}
+      </CodeStyled>
+      <BarStyled style={{ width: `${barWidth}%` }}/>
+      <UsernameStyled>
+        {username}
+      </UsernameStyled>
+    </AccountStyled>
+  );
+};
 
 Account.propTypes = {
   code: PropTypes.string.isRequired,
