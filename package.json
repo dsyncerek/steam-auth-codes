@@ -6,7 +6,6 @@
     "client:build": "cd client && npm run build",
     "server:start": "cd server && npm run start",
     "install": "cd client && npm install && cd .. && cd server && npm install",
-    "postinstall": "npm run client:build",
     "deploy": "cd client && npm run build && cd .. && cd server && npm run start"
   }
 }
