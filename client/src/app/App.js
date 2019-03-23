@@ -37,9 +37,9 @@ class App extends Component {
       <StatusContext.Provider value={this.state.status}>
         <ThemeProvider theme={theme}>
           <>
-            <GlobalStyled/>
+            <GlobalStyled />
             <Layout>
-              <Accounts accounts={this.state.accounts}/>
+              <Accounts accounts={this.state.accounts} />
             </Layout>
           </>
         </ThemeProvider>

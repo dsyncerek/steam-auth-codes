@@ -27,7 +27,7 @@ const Account = ({ code, username, validity }) => {
       <CodeStyled>
         {code}
       </CodeStyled>
-      <BarStyled style={{ width: `${barWidth}%` }}/>
+      <BarStyled style={{ width: `${barWidth}%` }} />
       <UsernameStyled>
         {username}
       </UsernameStyled>

@@ -18,7 +18,7 @@ const getMessage = () => {
   if (loading) return 'Loading...';
   if (error) return 'Can\'t connect to the server!';
   if (permissionRequired) return 'You don\'t have permission!';
-  if (loginRequired) return <LoginButton/>;
+  if (loginRequired) return <LoginButton />;
 
   return null;
 };
@@ -30,13 +30,13 @@ const Layout = ({ children }) => {
   return (
     <>
       <Section as="div">
-        <Header/>
+        <Header />
       </Section>
       <Section isOdd={true} as="main">
         {content}
       </Section>
       <Section as="div">
-        <Footer/>
+        <Footer />
       </Section>
     </>
   );
