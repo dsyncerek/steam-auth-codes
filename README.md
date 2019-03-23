@@ -4,6 +4,19 @@
 
 Live is [here](https://steam-auth-codes.herokuapp.com/).
 
+## Technologies
+
+### Front-End
+ 
+- [React](https://reactjs.org/)
+- [styled-components](https://www.styled-components.com/)
+- [socket.io](https://socket.io/)
+
+### Back-End
+
+- [Express](https://expressjs.com/)
+- [socket.io](https://socket.io/)
+
 ## Installation
 
 ```
@@ -29,6 +42,8 @@ todo `server/.env`
 ## Deploy
 
 todo: `.env`
+
+https://devcenter.heroku.com/articles/config-vars
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/dsyncerek/steam-auth-codes)
 
