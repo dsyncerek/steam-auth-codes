@@ -1,5 +1,7 @@
 # Steam AuthCodes
 
+All your Steam AuthCodes in one place.
+
 ## Demo
 
 Live is [here](https://steam-auth-codes.herokuapp.com/).
