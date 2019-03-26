@@ -1,6 +1,6 @@
 # Steam AuthCodes
 
-All your Steam AuthCodes in one place.
+> A web application which keeps all your Steam AuthCodes in one place.
 
 ## Demo
 
