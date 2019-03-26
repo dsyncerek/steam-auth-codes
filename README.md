@@ -4,7 +4,7 @@ All your Steam AuthCodes in one place.
 
 ## Demo
 
-Live is [here](https://steam-auth-codes.herokuapp.com/).
+Live: [https://steam-auth-codes.herokuapp.com/](https://steam-auth-codes.herokuapp.com/).
 
 **NOTE**: Application will load after a short delay. Details [here](https://devcenter.heroku.com/articles/free-dyno-hours).
 
