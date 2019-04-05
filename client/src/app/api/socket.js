@@ -1,25 +1,25 @@
 import { EventEmitter } from 'fbemitter';
 import io from 'socket.io-client';
-import { socketStatus } from './enums';
+import { socketStatusEnum } from './enums';
 
 const emitter = new EventEmitter();
 
 io('/')
-  .on('init', ({ statusCode, username, accounts }) => {
-    emitter.emit('status', { statusCode, username });
-    emitter.emit('accounts', { accounts });
+  .on('init', ({ statusCode, accounts }) => {
+    emitter.emit('status', { responseStatus: statusCode });
+    emitter.emit('new accounts', { accounts });
   })
   .on('accounts', ({ accounts }) => {
-    emitter.emit('accounts', { accounts });
+    emitter.emit('new accounts', { accounts });
   })
   .on('connect', () => {
-    emitter.emit('status', { socketState: socketStatus.connected });
+    emitter.emit('status', { socketStatus: socketStatusEnum.connected });
   })
   .on('connect_error', () => {
-    emitter.emit('status', { socketState: socketStatus.error });
+    emitter.emit('status', { socketStatus: socketStatusEnum.error });
   })
   .on('disconnect', () => {
-    emitter.emit('status', { socketState: socketStatus.loading });
+    emitter.emit('status', { socketStatus: socketStatusEnum.loading });
   });
 
 export default emitter;

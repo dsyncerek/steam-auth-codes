@@ -1,10 +1,10 @@
-export const socketStatus = {
+export const socketStatusEnum = {
   loading: 'loading',
   connected: 'connected',
   error: 'error',
 };
 
-export const responseStatus = {
+export const responseStatusEnum = {
   unauthorized: '401',
   forbidden: '403',
   ok: '200',
