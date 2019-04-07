@@ -4,13 +4,13 @@ import TextLink from '../TextLink/TextLink';
 import { FooterStyled, HeartStyled } from './Footer.styled';
 
 const Footer = () => {
-  const { username } = useContext(StatusContext);
+  const { steamid } = useContext(StatusContext);
 
   return (
     <FooterStyled>
-      {username && (
+      {steamid && (
         <p>
-          Hello {username}, <TextLink href="/logout">Logout</TextLink>!
+          Hello {steamid}, <TextLink href="/logout">Logout</TextLink>!
         </p>
       )}
       <p>
