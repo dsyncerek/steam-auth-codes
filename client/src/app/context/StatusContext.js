@@ -4,7 +4,8 @@ import api from '../api/socket';
 
 const defaultValue = {
   socketStatus: 'loading',
-  responseStatus: '',
+  responseStatus: null,
+  steamid: null,
 };
 
 const StatusContext = createContext(defaultValue);
@@ -13,12 +14,15 @@ const StatusContextProvider = ({ children }) => {
   const [status, setStatus] = useState(defaultValue);
 
   useEffect(() => {
-    api.addListener('status', ({ socketStatus, responseStatus }) => {
+    const subscription = api.addListener('status', ({ socketStatus, responseStatus, steamid }) => {
       setStatus(status => ({
         socketStatus: socketStatus || status.socketStatus,
         responseStatus: responseStatus || status.responseStatus,
+        steamid: steamid || status.steamid,
       }));
     });
+
+    return () => subscription.remove();
   }, []);
 
   return (

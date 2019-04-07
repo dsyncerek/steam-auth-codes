@@ -31,8 +31,9 @@ module.exports = (app, io) => {
     const hasAccess = statusCode === responseStatus.ok;
 
     socket.emit('init', {
-      statusCode,
+      responseStatus: statusCode,
       accounts: hasAccess ? codesEmitter.accounts : [],
+      steamid,
     });
 
     if (hasAccess) {

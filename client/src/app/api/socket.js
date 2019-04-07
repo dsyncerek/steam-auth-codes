@@ -5,8 +5,8 @@ import { socketStatusEnum } from './enums';
 const emitter = new EventEmitter();
 
 io('/')
-  .on('init', ({ statusCode, accounts }) => {
-    emitter.emit('status', { responseStatus: statusCode });
+  .on('init', ({ responseStatus, accounts, steamid }) => {
+    emitter.emit('status', { responseStatus, steamid });
     emitter.emit('new accounts', { accounts });
   })
   .on('accounts', ({ accounts }) => {

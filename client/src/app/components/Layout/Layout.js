@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
       <Section as="div">
         <Header />
       </Section>
-      <Section isOdd={true} as="main">
+      <Section odd={true} as="main">
         {content}
       </Section>
       <Section as="div">
