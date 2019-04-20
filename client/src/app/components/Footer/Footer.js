@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import StatusContext from '../../context/StatusContext';
+import StatusContext from '../../context/Status.context';
 import TextLink from '../TextLink/TextLink';
 import { FooterStyled, HeartStyled } from './Footer.styled';
 

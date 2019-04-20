@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { responseStatusEnum, socketStatusEnum } from '../../api/enums';
-import StatusContext from '../../context/StatusContext';
+import StatusContext from '../../context/Status.context';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import LoginButton from '../LoginButton/LoginButton';
 import Message from '../Message/Message';
 import Section from '../Section/Section';
+import socketStatusEnum from '../../enums/socketStatus.enum';
+import responseStatusEnum from '../../enums/responseStatus.enum';
 
 const getMessage = () => {
   const { socketStatus, responseStatus } = useContext(StatusContext);
-  const loading = socketStatus === socketStatusEnum.loading || (socketStatus === socketStatusEnum.connected && !responseStatus);
+  const loading = !socketStatus || (socketStatus === socketStatusEnum.connected && !responseStatus);
   const error = socketStatus === socketStatusEnum.error;
   const loginRequired = responseStatus === responseStatusEnum.unauthorized;
   const permissionRequired = responseStatus === responseStatusEnum.forbidden;

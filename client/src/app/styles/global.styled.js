@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
-export const GlobalStyled = createGlobalStyle`
+export const GlobalStyled = createGlobalStyle(props => css`
   ${reset}
   
   html {
@@ -15,10 +15,10 @@ export const GlobalStyled = createGlobalStyle`
   }
   
   body {
-    background: ${props => props.theme.colorBgDefault};
-    color: ${props => props.theme.colorTextDefault};
-    font-family: ${props => props.theme.fontFamily};
-    font-size: ${props => props.theme.fontSize};
+    background: ${props.theme.colorBgDefault};
+    color: ${props.theme.colorTextDefault};
+    font-family: ${props.theme.fontFamily};
+    font-size: ${props.theme.fontSize};
     font-weight: 400;
     line-height: normal;
   }
@@ -31,4 +31,4 @@ export const GlobalStyled = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
-`;
+`);
