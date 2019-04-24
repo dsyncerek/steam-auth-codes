@@ -11,7 +11,7 @@ export default (initialValue, decreaseInterval) => {
     }, decreaseInterval);
 
     return () => clearInterval(handler);
-  }, [initialValue]);
+  }, [initialValue, decreaseInterval]);
 
   return value;
 }

@@ -9,8 +9,7 @@ import Section from '../Section/Section';
 import socketStatusEnum from '../../enums/socketStatus.enum';
 import responseStatusEnum from '../../enums/responseStatus.enum';
 
-const getMessage = () => {
-  const { socketStatus, responseStatus } = useContext(StatusContext);
+const getMessage = (socketStatus, responseStatus) => {
   const loading = !socketStatus || (socketStatus === socketStatusEnum.connected && !responseStatus);
   const error = socketStatus === socketStatusEnum.error;
   const loginRequired = responseStatus === responseStatusEnum.unauthorized;
@@ -25,7 +24,8 @@ const getMessage = () => {
 };
 
 const Layout = ({ children }) => {
-  const message = getMessage();
+  const { socketStatus, responseStatus } = useContext(StatusContext);
+  const message = getMessage(socketStatus, responseStatus);
   const content = message ? <Message>{message}</Message> : children;
 
   return (
