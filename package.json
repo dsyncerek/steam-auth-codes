@@ -1,12 +1,22 @@
 {
-  "name": "steam-auth-codes",
+  "name": "steam-inventory-manager",
   "version": "1.0.0",
   "scripts": {
-    "client:start": "cd client && npm run start",
-    "client:build": "cd client && npm run build",
-    "server:start": "cd server && npm run start",
-    "install": "cd client && npm install && cd .. && cd server && npm install",
-    "deploy": "cd client && npm run build && cd .. && cd server && npm run start",
-    "heroku-postbuild": "npm run client:build"
+    "start:dev": "lerna run --parallel start:dev",
+    "start:prod": "lerna run --stream start:prod",
+    "build": "lerna run --stream build",
+    "format": "lerna run --stream format",
+    "lint": "lerna run --stream lint",
+    "postinstall": "lerna bootstrap",
+    "heroku-postbuild": "npm run build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run precommit"
+    }
+  },
+  "devDependencies": {
+    "husky": "^3.0.8",
+    "lerna": "^3.16.4"
   }
 }

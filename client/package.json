@@ -1,21 +1,36 @@
 {
   "name": "steam-auth-codes-client",
   "version": "1.0.0",
-  "proxy": "http://localhost:9999/",
+  "proxy": "http://localhost:5000/",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "start:dev": "react-scripts start",
+    "build": "react-scripts build",
+    "format": "prettier src/**/*.{js,jsx} --write",
+    "lint": "npm run lint:scripts && npm run lint:styles",
+    "lint:scripts": "eslint src/**/*.{js,tsx} --fix",
+    "lint:styles": "stylelint src/**/*.{js,jsx} --fix",
+    "precommit": "lint-staged"
   },
   "dependencies": {
-    "fbemitter": "^2.1.1",
-    "polished": "^2.3.3",
+    "polished": "^3.4.1",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.0",
-    "socket.io-client": "^2.2.0",
-    "styled-components": "^4.2.0",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-scripts": "^3.2.0",
+    "socket.io-client": "^2.3.0",
+    "styled-components": "^4.4.0",
     "styled-components-breakpoint": "^2.1.1",
-    "styled-reset": "^1.7.1"
+    "styled-reset": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
+    "lint-staged": "^9.4.1",
+    "prettier": "^1.18.2",
+    "stylelint": "^11.0.0",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0"
   }
 }
