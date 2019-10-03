@@ -7,8 +7,7 @@
     "build": "lerna run --stream build",
     "format": "lerna run --stream format",
     "lint": "lerna run --stream lint",
-    "postinstall": "lerna bootstrap",
-    "heroku-postbuild": "npm run build"
+    "postinstall": "lerna bootstrap"
   },
   "husky": {
     "hooks": {
