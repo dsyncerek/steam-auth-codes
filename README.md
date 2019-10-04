@@ -50,10 +50,4 @@ Change file `server/src/config/accounts.js` with information about your Steam Ac
 
 `npm run format` formats the project using [prettier](https://github.com/prettier/prettier).
 
-## Deploy
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/dsyncerek/steam-auth-codes)
-
-You can set your environment variables using the [Heroku Dashboard](https://devcenter.heroku.com/articles/config-vars#using-the-heroku-dashboard).
-
 ## [License](LICENSE)
