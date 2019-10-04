@@ -29,7 +29,7 @@ export class CodesService {
   private updateAccount(account: SteamAccount): SteamAccount {
     return {
       ...account,
-      validity: this.getValidity() + Math.random(),
+      validity: this.getValidity(),
       authCode: this.generateAuthCode(account.sharedSecret),
     };
   }
