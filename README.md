@@ -34,7 +34,7 @@ npm install
 
 ## Configuration
 
-Rename `server/src/.env.example` to `server/src/.env`.
+Rename `server/src/.env.example` to `server/src/.env` and edit with your needs.
 
 Change file `server/src/config/accounts.js` with information about your Steam Accounts.
 
@@ -46,9 +46,9 @@ Change file `server/src/config/accounts.js` with information about your Steam Ac
 
 `npm run build` builds the project.
 
-`npm run lint` lints the project using eslint and stylelint.
+`npm run lint` lints the project using [eslint](https://github.com/eslint/eslint) and [stylelint](https://github.com/stylelint/stylelint).
 
-`npm run format` formats the project using prettier.
+`npm run format` formats the project using [prettier](https://github.com/prettier/prettier).
 
 ## Deploy
 
