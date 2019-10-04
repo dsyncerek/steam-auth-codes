@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { accounts } from '../config/accounts';
+import { accounts } from './config/accounts';
 import { CodesModule } from './codes/codes.module';
 
 const clientBuildPath = join(__dirname, '../..', 'client/build');
