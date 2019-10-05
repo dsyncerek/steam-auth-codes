@@ -1,6 +1,7 @@
 export class SteamAccount {
   username: string;
+  sharedSecret: string;
   authCode?: string;
   validity?: number;
-  sharedSecret: string;
+  generatedAt?: number;
 }

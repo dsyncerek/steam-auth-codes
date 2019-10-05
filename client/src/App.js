@@ -14,8 +14,8 @@ const App = () => {
   const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
-    socket.emit('codes');
-    socket.on('codes', accounts => setAccounts(accounts));
+    socket.emit('accounts');
+    socket.on('accounts', accounts => setAccounts(accounts));
   }, [socket]);
 
   return (
