@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "proxy": "http://localhost:5000/",
   "scripts": {
-    "start:dev": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "format": "prettier src/**/*.{js,jsx} --write",
     "lint": "npm run lint:scripts && npm run lint:styles",
-    "lint:scripts": "eslint src/**/*.{js,tsx} --fix",
+    "lint:scripts": "eslint src/**/*.{js,jsx} --fix",
     "lint:styles": "stylelint src/**/*.{js,jsx} --fix",
     "precommit": "lint-staged"
   },
