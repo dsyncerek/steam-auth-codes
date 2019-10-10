@@ -20,7 +20,7 @@
     "socket.io-client": "^2.3.0",
     "styled-components": "^4.4.0",
     "styled-components-breakpoint": "^2.1.1",
-    "styled-reset": "^4.0.1"
+    "styled-reset": "^4.0.2"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
