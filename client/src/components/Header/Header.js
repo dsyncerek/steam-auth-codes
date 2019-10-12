@@ -3,8 +3,8 @@ import { DescriptionStyled, HeaderStyled, TitleStyled } from './Header.styled';
 
 const Header = () => (
   <HeaderStyled>
-    <TitleStyled>Steam AuthCodes</TitleStyled>
-    <DescriptionStyled>All your Steam AuthCodes in one place.</DescriptionStyled>
+    <TitleStyled>Steam Auth Codes</TitleStyled>
+    <DescriptionStyled>All your Steam Auth Codes in one place.</DescriptionStyled>
   </HeaderStyled>
 );
 
