@@ -28,7 +28,7 @@
     "@nestjs/testing": "^6.8.5",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
-    "eslint": "^6.5.1",
+    "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-config-standard-with-typescript": "^10.0.0",
     "eslint-plugin-import": "^2.18.2",
