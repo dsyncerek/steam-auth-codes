@@ -9,23 +9,27 @@ import { SteamAccount } from './steam-account.entity';
 export class SteamAccountService {
   private readonly subject = new BehaviorSubject<SteamAccount[]>([]);
 
-  public readonly accounts$ = this.subject
-    .asObservable()
-    .pipe(map(accounts => this.authCodeService.updateAccounts(accounts)));
+  public readonly accounts$ = this.subject.asObservable().pipe(map(accounts => this.updateAccounts(accounts)));
 
   constructor(private readonly authCodeService: AuthCodeService, @InjectAccounts() accounts: SteamAccount[]) {
     this.subject.next(accounts);
-    this.setupInterval();
+    this.update();
   }
 
-  private setupInterval(): void {
-    this.refreshCodes();
-    setTimeout(() => this.setupInterval(), this.authCodeService.getValidity());
-  }
-
-  private refreshCodes(): void {
-    const accounts = this.subject.getValue();
-    const updatedAccounts = this.authCodeService.updateAccounts(accounts);
+  private update(): void {
+    const accounts = this.subject.value;
+    const updatedAccounts = this.updateAccounts(accounts);
     this.subject.next(updatedAccounts);
+
+    setTimeout(() => this.update(), this.authCodeService.getValidity());
+  }
+
+  private updateAccounts(accounts: SteamAccount[]): SteamAccount[] {
+    return accounts.map(account => ({
+      ...account,
+      authCode: this.authCodeService.generateAuthCode(account.sharedSecret),
+      validity: this.authCodeService.getValidity(),
+      generatedAt: Date.now(),
+    }));
   }
 }
