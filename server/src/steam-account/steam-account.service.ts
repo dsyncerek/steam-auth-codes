@@ -16,15 +16,15 @@ export class SteamAccountService {
 
   constructor(private readonly authCodeService: AuthCodeService, @InjectAccounts() accounts: SteamAccount[]) {
     this.subject.next(accounts);
-    this.update();
+    this.refresh();
   }
 
-  private update(): void {
+  private refresh(): void {
     const accounts = this.subject.value;
     const updatedAccounts = this.updateAccounts(accounts);
     this.subject.next(updatedAccounts);
 
-    setTimeout(() => this.update(), this.authCodeService.getValidity());
+    setTimeout(() => this.refresh(), this.authCodeService.getValidity());
   }
 
   private updateAccounts(accounts: SteamAccount[]): SteamAccount[] {
