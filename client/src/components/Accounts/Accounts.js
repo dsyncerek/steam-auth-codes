@@ -15,6 +15,7 @@ Accounts.propTypes = {
       authCode: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
       validity: PropTypes.number.isRequired,
+      generatedAt: PropTypes.number.isRequired,
     }),
   ).isRequired,
 };

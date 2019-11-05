@@ -9,10 +9,7 @@ import { SteamAccount } from './steam-account.entity';
 export class SteamAccountService {
   private readonly subject = new BehaviorSubject<SteamAccount[]>([]);
 
-  public readonly accounts$ = this.subject.asObservable().pipe(
-    map(accounts => this.updateAccounts(accounts)),
-    map(accounts => this.excludeSharedSecret(accounts)),
-  );
+  public readonly accounts$ = this.subject.asObservable().pipe(map(accounts => this.excludeSharedSecret(accounts)));
 
   constructor(private readonly authCodeService: AuthCodeService, @InjectAccounts() accounts: SteamAccount[]) {
     this.subject.next(accounts);
