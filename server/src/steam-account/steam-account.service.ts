@@ -17,9 +17,7 @@ export class SteamAccountService {
   }
 
   private refresh(): void {
-    const accounts = this.subject.value;
-    const updatedAccounts = this.updateAccounts(accounts);
-    this.subject.next(updatedAccounts);
+    this.subject.next(this.updateAccounts(this.subject.value));
 
     setTimeout(() => this.refresh(), this.authCodeService.getValidity());
   }
