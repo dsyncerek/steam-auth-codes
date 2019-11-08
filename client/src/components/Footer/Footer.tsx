@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import TextLink from '../TextLink/TextLink';
 import { FooterStyled, HeartStyled } from './Footer.styled';
 
-type FooterProps = {}
+type FooterProps = {};
 
 const Footer: FC<FooterProps> = () => (
   <FooterStyled>

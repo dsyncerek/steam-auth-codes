@@ -1,21 +1,7 @@
-export const breakpoints = {
-  xs: 0,
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-  xxl: 1440,
-};
+import { DefaultTheme } from 'styled-components';
+import { breakpoints, colors } from './variables.styled';
 
-export const colors = {
-  white: '#eee',
-  black: '#111',
-  red: '#cd201f',
-  blue: '#00adee',
-  darkBlue: '#171a21',
-};
-
-export const theme = {
+export const theme: DefaultTheme = {
   colors,
   breakpoints,
 
@@ -27,7 +13,7 @@ export const theme = {
   colorSecondary: colors.darkBlue,
 
   fontSize: '14px',
-  fontFamily: 'Ubuntu',
+  fontFamily: `'Ubuntu', sans-serif`,
   gutter: 10,
   transitionTime: '.3s',
 };

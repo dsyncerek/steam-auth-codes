@@ -1,4 +1,4 @@
-import { margin, padding } from 'polished';
+import { margin, padding, size } from 'polished';
 import styled, { css } from 'styled-components';
 
 export const CodeStyled = styled.span(
@@ -12,8 +12,7 @@ export const CodeStyled = styled.span(
 export const BarStyled = styled.div(
   props => css`
     display: inline-block;
-    height: ${`${props.theme.gutter / 2}px`};
-    width: 100%;
+    ${size(props.theme.gutter / 2, '100%')};
     ${margin(props.theme.gutter, 0, props.theme.gutter / 2)};
     background: ${props.theme.colorPrimary};
   `,
@@ -26,7 +25,7 @@ export const UsernameStyled = styled.span(
   `,
 );
 
-export const AccountStyled = styled.div(
+export const AccountDetailsStyled = styled.div<{ isEnding: boolean }>(
   props => css`
     ${padding(props.theme.gutter * 2)};
     background: ${props.theme.colorSecondary};

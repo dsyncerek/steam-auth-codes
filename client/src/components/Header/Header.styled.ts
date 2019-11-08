@@ -14,6 +14,7 @@ export const TitleStyled = styled.h1(
     letter-spacing: -0.05em;
     word-spacing: 0.1em;
     font-size: 3em;
+    margin: 0;
   `,
 );
 

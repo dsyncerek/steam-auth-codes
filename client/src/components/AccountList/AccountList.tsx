@@ -1,18 +1,16 @@
 import React, { FC } from 'react';
 import SteamAccount from '../../models/steam-account';
 import AccountDetails from '../AccountDetails/AccountDetails';
-import { AccountsStyled } from './Accounts.styled';
+import { AccountListStyled } from './AccountList.styled';
 
 type AccountListProps = {
   accounts: SteamAccount[];
-}
+};
 
 const AccountList: FC<AccountListProps> = ({ accounts }) => (
-  <AccountsStyled>
-    {accounts && accounts.map(account => {
-      return <AccountDetails key={account.username} account={account} />;
-    })}
-  </AccountsStyled>
+  <AccountListStyled>
+    {accounts && accounts.map(account => <AccountDetails key={account.username} account={account} />)}
+  </AccountListStyled>
 );
 
 export default AccountList;
