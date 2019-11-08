@@ -4,12 +4,8 @@
     "outDir": "./dist",
     "module": "commonjs",
     "target": "es6",
-    "sourceMap": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "removeComments": true,
-    "declaration": false,
-    "incremental": true
+    "emitDecoratorMetadata": true
   },
   "files": ["src/main.ts"],
   "include": ["src/**/*.ts"],
