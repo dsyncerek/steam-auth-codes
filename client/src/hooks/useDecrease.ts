@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export default (initialValue, decreaseInterval = 1000) => {
+export default (initialValue: number, decreaseInterval: number = 1000): number => {
   const [value, setValue] = React.useState(0);
 
   useEffect(() => {

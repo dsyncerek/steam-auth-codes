@@ -1,7 +1,7 @@
 import { margin } from 'polished';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { AccountStyled } from '../Account/Account.styled';
+import { AccountStyled } from '../AccountDetails/Account.styled';
 
 export const AccountsStyled = styled.div`
   display: flex;

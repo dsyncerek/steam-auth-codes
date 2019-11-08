@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-export default url => {
+export default (url: string): [SocketIOClient.Socket, string] => {
   const [socket] = useState(io(url, { autoConnect: false }));
   const [socketState, setSocketState] = useState('loading');
 

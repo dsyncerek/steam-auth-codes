@@ -1,14 +1,18 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { FC } from 'react';
 import useDecrease from '../../hooks/useDecrease';
 import useTimeDifference from '../../hooks/useTimeDifference';
+import SteamAccount from '../../models/steam-account';
 import { AccountStyled, BarStyled, CodeStyled, UsernameStyled } from './Account.styled';
 
 const codeDecreaseInterval = 1000;
 const codeEndingTime = 5000;
 const codeValidityTime = 30000;
 
-const Account = ({ account }) => {
+type AccountDetailsProps = {
+  account: SteamAccount;
+}
+
+const AccountDetails: FC<AccountDetailsProps> = ({ account }) => {
   const difference = useTimeDifference(account.generatedAt);
   const currentValidity = useDecrease(account.validity - difference, codeDecreaseInterval);
 
@@ -17,20 +21,15 @@ const Account = ({ account }) => {
 
   return (
     <AccountStyled isEnding={isEnding}>
-      <CodeStyled>{account.authCode}</CodeStyled>
+      <CodeStyled>
+        {account.authCode}
+      </CodeStyled>
       <BarStyled style={{ width: `${barWidth}%` }} />
-      <UsernameStyled>{account.username}</UsernameStyled>
+      <UsernameStyled>
+        {account.username}
+      </UsernameStyled>
     </AccountStyled>
   );
 };
 
-Account.propTypes = {
-  account: PropTypes.shape({
-    authCode: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    validity: PropTypes.number.isRequired,
-    generatedAt: PropTypes.number.isRequired,
-  }).isRequired,
-};
-
-export default Account;
+export default AccountDetails;

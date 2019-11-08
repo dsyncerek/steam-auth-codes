@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default generatedAt => {
+export default (generatedAt: number): number => {
   const [difference, setDifference] = useState(0);
 
   useEffect(() => {
