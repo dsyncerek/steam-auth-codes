@@ -20,7 +20,7 @@ describe('AuthCodeService', () => {
     it('should return correct auth code', () => {
       const authCode = service.generateAuthCode('shared_secret');
 
-      expect(authCode).toMatch(/[\w\d]{5}/);
+      expect(authCode.code).toMatch(/[\w\d]{5}/);
     });
   });
 
