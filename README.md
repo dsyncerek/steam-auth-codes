@@ -35,7 +35,7 @@ npm install
 
 ## Configuration
 
-Rename `server/src/.env.example` to `server/src/.env` and edit with your needs.
+Rename `server/.env.example` to `server/.env` and edit with your needs.
 
 Change file `server/src/config/accounts.js` with information about your Steam Accounts.
 
