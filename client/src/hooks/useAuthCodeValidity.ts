@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import AuthCode from '../models/auth-code';
+import AuthCode from '../models/AuthCode';
 
-export default (authCode: AuthCode, decreaseInterval: number = 1000): number => {
+const useAuthCodeValidity = (authCode: AuthCode, decreaseInterval: number = 1000): number => {
   const [currentValidity, setCurrentValidity] = useState(0);
 
   useEffect(() => {
@@ -25,3 +25,5 @@ export default (authCode: AuthCode, decreaseInterval: number = 1000): number => 
 
   return currentValidity;
 };
+
+export default useAuthCodeValidity;

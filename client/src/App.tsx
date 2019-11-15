@@ -3,7 +3,7 @@ import AccountList from './components/AccountList/AccountList';
 import Layout from './components/Layout/Layout';
 import Message from './components/Message/Message';
 import useSocket from './hooks/useSocket';
-import SteamAccount from './models/steam-account';
+import SteamAccount from './models/SteamAccount';
 
 const App: FC = () => {
   const [socket, socketState] = useSocket('/');

@@ -1,7 +1,8 @@
 import { DefaultTheme } from 'styled-components';
-import { breakpoints, colors } from './variables.styled';
+import breakpoints from './breakpoints';
+import colors from './colors';
 
-export const theme: DefaultTheme = {
+const theme: DefaultTheme = {
   colors,
   breakpoints,
 
@@ -17,3 +18,5 @@ export const theme: DefaultTheme = {
   gutter: 10,
   transitionTime: '.3s',
 };
+
+export default theme;

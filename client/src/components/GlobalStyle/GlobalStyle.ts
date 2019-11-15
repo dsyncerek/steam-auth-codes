@@ -1,7 +1,7 @@
 import 'normalize.css/normalize.css';
 import { createGlobalStyle, css } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle(
+const GlobalStyle = createGlobalStyle(
   props => css`
     html {
       box-sizing: border-box;
@@ -32,3 +32,5 @@ export const GlobalStyle = createGlobalStyle(
     }
   `,
 );
+
+export default GlobalStyle;

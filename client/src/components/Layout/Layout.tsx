@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from '../../styles/global.styled';
-import { theme } from '../../styles/theme.styled';
+import theme from '../../theme/theme';
 import Footer from '../Footer/Footer';
+import GlobalStyle from '../GlobalStyle/GlobalStyle';
 import Header from '../Header/Header';
 import Section from '../Section/Section';
 
