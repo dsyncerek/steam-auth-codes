@@ -1,3 +1,4 @@
+import { ClassSerializerInterceptor, UseInterceptors } from '@nestjs/common';
 import { SubscribeMessage, WebSocketGateway, WsResponse } from '@nestjs/websockets';
 import { plainToClass } from 'class-transformer';
 import { Observable } from 'rxjs';
@@ -10,6 +11,7 @@ export class SteamAccountGateway {
   constructor(private readonly steamAccountService: SteamAccountService) {}
 
   @SubscribeMessage('accounts')
+  @UseInterceptors(ClassSerializerInterceptor)
   getAccounts(): Observable<WsResponse<SteamAccount[]>> {
     return this.steamAccountService.accounts$.pipe(
       map(accounts => plainToClass(SteamAccount, accounts)),
