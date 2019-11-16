@@ -1,4 +1,5 @@
 import { SubscribeMessage, WebSocketGateway, WsResponse } from '@nestjs/websockets';
+import { plainToClass } from 'class-transformer';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SteamAccount } from './steam-account.entity';
@@ -10,6 +11,9 @@ export class SteamAccountGateway {
 
   @SubscribeMessage('accounts')
   getAccounts(): Observable<WsResponse<SteamAccount[]>> {
-    return this.steamAccountService.accounts$.pipe(map(data => ({ event: 'accounts', data })));
+    return this.steamAccountService.accounts$.pipe(
+      map(accounts => plainToClass(SteamAccount, accounts)),
+      map(data => ({ event: 'accounts', data })),
+    );
   }
 }
