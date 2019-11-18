@@ -1,5 +1,5 @@
 import { Exclude } from 'class-transformer';
-import { AuthCode } from '../auth-code/auth-code.entity';
+import { AuthCode } from '../../auth-code/entity/auth-code.entity';
 
 export class SteamAccount {
   username: string;
@@ -7,4 +7,8 @@ export class SteamAccount {
 
   @Exclude()
   sharedSecret: string;
+
+  constructor(obj: SteamAccount) {
+    Object.assign(this, obj);
+  }
 }

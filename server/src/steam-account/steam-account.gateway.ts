@@ -1,10 +1,9 @@
 import { ClassSerializerInterceptor, UseInterceptors } from '@nestjs/common';
-import { SubscribeMessage, WebSocketGateway, WsResponse } from '@nestjs/websockets';
-import { plainToClass } from 'class-transformer';
+import { SubscribeMessage, WebSocketGateway } from '@nestjs/websockets';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SteamAccount } from './steam-account.entity';
 import { SteamAccountService } from './steam-account.service';
+import { SteamAccountsWsResponse } from './ws-responses/steam-accounts-ws-response';
 
 @WebSocketGateway(+process.env.WEBSOCKET_PORT)
 export class SteamAccountGateway {
@@ -12,10 +11,7 @@ export class SteamAccountGateway {
 
   @SubscribeMessage('accounts')
   @UseInterceptors(ClassSerializerInterceptor)
-  getAccounts(): Observable<WsResponse<SteamAccount[]>> {
-    return this.steamAccountService.accounts$.pipe(
-      map(accounts => plainToClass(SteamAccount, accounts)),
-      map(data => ({ event: 'accounts', data })),
-    );
+  getAccounts(): Observable<SteamAccountsWsResponse> {
+    return this.steamAccountService.steamAccounts$.pipe(map(data => new SteamAccountsWsResponse(data)));
   }
 }

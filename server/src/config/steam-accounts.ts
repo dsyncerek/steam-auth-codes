@@ -1,6 +1,6 @@
-import { SteamAccount } from '../steam-account/steam-account.entity';
+import { SteamAccount } from '../steam-account/entity/steam-account.entity';
 
-export const accounts: SteamAccount[] = [
+export const steamAccounts: SteamAccount[] = [
   {
     username: 'dolore2',
     sharedSecret: 'kaGRU+4Rfsq3QCEPmv69r/C61qk=',

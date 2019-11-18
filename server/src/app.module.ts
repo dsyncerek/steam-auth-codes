@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { accounts } from './config/accounts';
+import { steamAccounts } from './config/steam-accounts';
 import { SteamAccountModule } from './steam-account/steam-account.module';
 
 const clientBuildPath = join(__dirname, '../..', 'client/build');
 
 @Module({
-  imports: [ServeStaticModule.forRoot({ rootPath: clientBuildPath }), SteamAccountModule.register(accounts)],
+  imports: [ServeStaticModule.forRoot({ rootPath: clientBuildPath }), SteamAccountModule.register(steamAccounts)],
 })
 export class AppModule {}

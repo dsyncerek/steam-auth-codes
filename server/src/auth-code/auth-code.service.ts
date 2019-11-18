@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { generateAuthCode } from 'steam-totp';
-import { AuthCode } from './auth-code.entity';
+import { AuthCode } from './entity/auth-code.entity';
 
 @Injectable()
 export class AuthCodeService {
   generateAuthCode(sharedSecret: string): AuthCode {
-    return {
+    return new AuthCode({
       code: generateAuthCode(sharedSecret),
       generatedAt: Date.now(),
       validity: this.getValidity(),
-    };
+    });
   }
 
   getValidity(): number {
