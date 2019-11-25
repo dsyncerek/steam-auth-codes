@@ -1,7 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { MessageStyled } from './Message.styled';
 
-type MessageProps = {};
+type MessageProps = {
+  children: ReactNode;
+};
 
 const Message: FC<MessageProps> = ({ children }) => <MessageStyled>{children}</MessageStyled>;
 

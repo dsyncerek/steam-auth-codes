@@ -5,6 +5,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
+    "test:cov": "react-scripts test --watchAll=false --coverage",
     "format": "prettier src/**/*.{ts,tsx} --write",
     "lint": "npm run lint:scripts && npm run lint:styles",
     "lint:scripts": "eslint src/**/*.{ts,tsx} --fix",
