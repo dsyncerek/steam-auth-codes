@@ -29,4 +29,6 @@ describe('SteamAccountService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('steamAccounts$', () => {});
 });

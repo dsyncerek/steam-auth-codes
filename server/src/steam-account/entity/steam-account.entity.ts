@@ -8,7 +8,7 @@ export class SteamAccount {
   @Exclude()
   sharedSecret: string;
 
-  constructor(obj: SteamAccount) {
+  constructor(obj: SteamAccount | Omit<SteamAccount, 'authCode'>) {
     Object.assign(this, obj);
   }
 }
