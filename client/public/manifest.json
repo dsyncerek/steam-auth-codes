@@ -1,0 +1,22 @@
+{
+  "lang": "en",
+  "name": "Steam Auth Codes",
+  "description": "A web application which keeps all your Steam Auth Codes in one place.",
+  "author": "Dariusz Syncerek",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#171717",
+  "background_color": "#171717",
+  "icons": [
+    {
+      "src": "/images/logo-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/logo-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
