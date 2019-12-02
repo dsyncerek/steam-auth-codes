@@ -1,4 +1,3 @@
-import 'normalize.css/normalize.css';
 import { createGlobalStyle, css } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle(
