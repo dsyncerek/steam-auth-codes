@@ -1,22 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, timer } from 'rxjs';
 import { AuthCodeService } from '../auth-code/auth-code.service';
 import { InjectSteamAccounts } from './decorators/inject-steam-accounts.decorator';
 import { SteamAccount } from './entity/steam-account.entity';
 
 @Injectable()
 export class SteamAccountService {
-  private readonly subject = new BehaviorSubject<SteamAccount[]>([]);
-  public readonly steamAccounts$ = this.subject.asObservable();
+  private subject: BehaviorSubject<SteamAccount[]>;
+  public steamAccounts$: Observable<SteamAccount[]>;
+  private timerSubscription: Subscription;
 
-  constructor(private readonly authCodeService: AuthCodeService, @InjectSteamAccounts() steamAccounts: SteamAccount[]) {
-    this.subject.next(this.updateSteamAccounts(steamAccounts));
-    this.refresh();
+  constructor(
+    private readonly authCodeService: AuthCodeService,
+    @InjectSteamAccounts() private readonly steamAccounts: SteamAccount[],
+  ) {
+    this.startTimer();
   }
 
-  private refresh(): void {
-    this.subject.next(this.updateSteamAccounts(this.subject.value));
-    setTimeout(() => this.refresh(), this.authCodeService.getValidity());
+  public startTimer(): void {
+    this.stopTimer();
+
+    this.subject = new BehaviorSubject<SteamAccount[]>([]);
+    this.steamAccounts$ = this.subject.asObservable();
+
+    this.timerSubscription = timer(
+      this.authCodeService.getCodeCurrentValidity(),
+      this.authCodeService.codeValidityTime,
+    ).subscribe(() => this.subject.next(this.updateSteamAccounts(this.steamAccounts)));
+  }
+
+  public stopTimer(): void {
+    if (this.subject && this.timerSubscription) {
+      this.subject.complete();
+      this.timerSubscription.unsubscribe();
+    }
   }
 
   private updateSteamAccounts(steamAccounts: SteamAccount[]): SteamAccount[] {

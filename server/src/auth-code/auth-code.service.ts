@@ -4,16 +4,17 @@ import { AuthCode } from './entity/auth-code.entity';
 
 @Injectable()
 export class AuthCodeService {
+  public codeValidityTime: number = 30000;
+
   generateAuthCode(sharedSecret: string): AuthCode {
     return new AuthCode({
       code: generateAuthCode(sharedSecret),
       generatedAt: Date.now(),
-      validity: this.getValidity(),
+      validity: this.getCodeCurrentValidity(),
     });
   }
 
-  getValidity(): number {
-    const codeValidityTime = 30 * 1000;
-    return codeValidityTime - (Date.now() % codeValidityTime);
+  getCodeCurrentValidity(): number {
+    return this.codeValidityTime - (Date.now() % this.codeValidityTime);
   }
 }
