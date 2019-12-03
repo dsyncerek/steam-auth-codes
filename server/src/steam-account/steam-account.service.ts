@@ -24,7 +24,7 @@ export class SteamAccountService {
     this.steamAccounts$ = this.subject.asObservable();
 
     this.timerSubscription = timer(
-      this.authCodeService.getCodeCurrentValidity(),
+      this.authCodeService.codeCurrentValidityTime,
       this.authCodeService.codeValidityTime,
     ).subscribe(() => this.subject.next(this.updateSteamAccounts(this.steamAccounts)));
   }

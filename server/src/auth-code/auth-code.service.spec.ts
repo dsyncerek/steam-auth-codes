@@ -30,7 +30,7 @@ describe('AuthCodeService', () => {
 
   describe('getCodeCurrentValidity()', () => {
     it('should return validity from correct range', () => {
-      const validity = service.getCodeCurrentValidity();
+      const validity = service.codeCurrentValidityTime;
 
       expect(validity).toBeGreaterThan(0);
       expect(validity).toBeLessThanOrEqual(30000);
@@ -39,17 +39,13 @@ describe('AuthCodeService', () => {
     it('should return correct validity when timestamp is less than validity time', () => {
       jest.spyOn(Date, 'now').mockReturnValue(10000);
 
-      const validity = service.getCodeCurrentValidity();
-
-      expect(validity).toBe(20000);
+      expect(service.codeCurrentValidityTime).toBe(20000);
     });
 
     it('should return correct validity when timestamp is greater that validity time', () => {
       jest.spyOn(Date, 'now').mockReturnValue(50000);
 
-      const validity = service.getCodeCurrentValidity();
-
-      expect(validity).toBe(10000);
+      expect(service.codeCurrentValidityTime).toBe(10000);
     });
   });
 });

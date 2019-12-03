@@ -12,7 +12,7 @@ describe('SteamAccountService', () => {
     new SteamAccount({ username: 'username_2', sharedSecret: 'shared_secret_2' }),
   ];
 
-  const authCodeServiceMock = { generateAuthCode: jest.fn(), getCodeCurrentValidity: jest.fn() };
+  const authCodeServiceMock = { generateAuthCode: jest.fn() };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -34,5 +34,7 @@ describe('SteamAccountService', () => {
     expect(service).toBeDefined();
   });
 
-  it('steamAccounts$', () => {});
+  it('steamAccounts$', () => {
+    // TODO
+  });
 });

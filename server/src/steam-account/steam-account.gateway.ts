@@ -11,7 +11,7 @@ export class SteamAccountGateway {
 
   @SubscribeMessage('accounts')
   @UseInterceptors(ClassSerializerInterceptor)
-  getAccounts(): Observable<SteamAccountsWsResponse> {
+  public getAccounts(): Observable<SteamAccountsWsResponse> {
     return this.steamAccountService.steamAccounts$.pipe(map(data => new SteamAccountsWsResponse(data)));
   }
 }

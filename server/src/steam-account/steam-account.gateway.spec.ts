@@ -19,5 +19,7 @@ describe('SteamAccountGateway', () => {
     expect(gateway).toBeDefined();
   });
 
-  it('getAccounts()', () => {});
+  it('getAccounts()', () => {
+    // TODO
+  });
 });
