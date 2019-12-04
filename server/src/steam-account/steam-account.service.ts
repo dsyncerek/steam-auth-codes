@@ -23,10 +23,12 @@ export class SteamAccountService {
     this.subject = new BehaviorSubject<SteamAccount[]>([]);
     this.steamAccounts$ = this.subject.asObservable();
 
+    this.updateSubject();
+
     this.timerSubscription = timer(
       this.authCodeService.codeCurrentValidityTime,
       this.authCodeService.codeValidityTime,
-    ).subscribe(() => this.subject.next(this.updateSteamAccounts(this.steamAccounts)));
+    ).subscribe(() => this.updateSubject());
   }
 
   public stopTimer(): void {
@@ -36,12 +38,15 @@ export class SteamAccountService {
     }
   }
 
-  private updateSteamAccounts(steamAccounts: SteamAccount[]): SteamAccount[] {
-    return steamAccounts.map(account => {
-      return new SteamAccount({
-        ...account,
-        authCode: this.authCodeService.generateAuthCode(account.sharedSecret),
-      });
+  private updateSubject(): void {
+    const updated = this.steamAccounts.map(this.updateSteamAccount);
+    this.subject.next(updated);
+  }
+
+  private updateSteamAccount(steamAccount: SteamAccount): SteamAccount {
+    return new SteamAccount({
+      ...steamAccount,
+      authCode: this.authCodeService.generateAuthCode(steamAccount.sharedSecret),
     });
   }
 }
