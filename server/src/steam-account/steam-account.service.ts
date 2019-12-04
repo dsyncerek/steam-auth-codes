@@ -39,8 +39,12 @@ export class SteamAccountService {
   }
 
   private updateSubject(): void {
-    const updated = this.steamAccounts.map(this.updateSteamAccount);
+    const updated = this.updateSteamAccounts(this.steamAccounts);
     this.subject.next(updated);
+  }
+
+  private updateSteamAccounts(steamAccounts: SteamAccount[]): SteamAccount[] {
+    return steamAccounts.map(steamAccount => this.updateSteamAccount(steamAccount));
   }
 
   private updateSteamAccount(steamAccount: SteamAccount): SteamAccount {
