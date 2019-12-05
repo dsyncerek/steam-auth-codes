@@ -1,5 +1,5 @@
 {
-  "name": "steam-inventory-manager",
+  "name": "steam-auth-codes",
   "version": "1.0.0",
   "scripts": {
     "start:dev": "concurrently -n server,client \"npm --prefix server run start:dev\" \"npm --prefix client run start\"",
