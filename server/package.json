@@ -31,7 +31,7 @@
     "@nestjs/testing": "^6.10.12",
     "@types/jest": "^24.0.24",
     "@types/steam-totp": "^2.1.0",
-    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.11.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
