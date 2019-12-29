@@ -15,7 +15,7 @@
   "dependencies": {
     "@nestjs/common": "^6.10.13",
     "@nestjs/core": "^6.10.12",
-    "@nestjs/platform-express": "^6.10.12",
+    "@nestjs/platform-express": "^6.10.13",
     "@nestjs/platform-socket.io": "^6.10.13",
     "@nestjs/serve-static": "^1.0.2",
     "@nestjs/websockets": "^6.10.13",
