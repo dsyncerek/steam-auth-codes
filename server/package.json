@@ -28,7 +28,7 @@
   "devDependencies": {
     "@nestjs/cli": "^6.13.1",
     "@nestjs/schematics": "^6.8.0",
-    "@nestjs/testing": "^6.10.13",
+    "@nestjs/testing": "^6.10.14",
     "@types/jest": "^24.0.25",
     "@types/steam-totp": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
