@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^6.13.3",
-    "@nestjs/schematics": "^6.8.1",
+    "@nestjs/schematics": "^6.8.2",
     "@nestjs/testing": "^6.10.14",
     "@types/jest": "^24.0.25",
     "@types/steam-totp": "^2.1.0",
