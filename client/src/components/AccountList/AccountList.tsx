@@ -7,9 +7,11 @@ type AccountListProps = {
   accounts: SteamAccount[];
 };
 
-const AccountList: FC<AccountListProps> = ({ accounts }) => (
+const AccountList: FC<AccountListProps> = ({ accounts = [] }) => (
   <AccountListStyled>
-    {accounts && accounts.map(account => <AccountDetails key={account.username} account={account} />)}
+    {accounts.map(account => (
+      <AccountDetails key={account.username} account={account} />
+    ))}
   </AccountListStyled>
 );
 

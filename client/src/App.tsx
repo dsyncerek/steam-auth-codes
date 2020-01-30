@@ -18,7 +18,8 @@ const App: FC = () => {
     <Layout>
       {socketState === 'loading' && <Message>Loading...</Message>}
       {socketState === 'error' && <Message>Can't connect to the server!</Message>}
-      {socketState === 'connected' && <AccountList accounts={accounts} />}
+      {socketState === 'connected' && accounts.length && <AccountList accounts={accounts} />}
+      {socketState === 'connected' && !accounts.length && <Message>No accounts found!</Message>}
     </Layout>
   );
 };

@@ -6,15 +6,15 @@ import { AuthCode } from './entity/auth-code.entity';
 export class AuthCodeService {
   public codeValidityTime: number = 30000;
 
-  public get codeCurrentValidityTime(): number {
-    return this.codeValidityTime - (Date.now() % this.codeValidityTime);
-  }
-
   public generateAuthCode(sharedSecret: string): AuthCode {
     return new AuthCode({
       code: generateAuthCode(sharedSecret),
       generatedAt: Date.now(),
       validity: this.codeCurrentValidityTime,
     });
+  }
+
+  private get codeCurrentValidityTime(): number {
+    return this.codeValidityTime - (Date.now() % this.codeValidityTime);
   }
 }

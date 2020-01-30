@@ -18,34 +18,40 @@ describe('AuthCodeService', () => {
 
   describe('generateAuthCode()', () => {
     it('should return correct auth code', () => {
-      jest.spyOn(Date, 'now').mockReturnValue(10000);
-
       const authCode = service.generateAuthCode('shared_secret');
 
       expect(authCode.code).toMatch(/[\w\d]{5}/);
-      expect(authCode.generatedAt).toBe(10000);
-      expect(authCode.validity).toBe(20000);
     });
   });
 
-  describe('getCodeCurrentValidity()', () => {
-    it('should return validity from correct range', () => {
-      const validity = service.codeCurrentValidityTime;
+  it('should return validity from correct range', () => {
+    const authCode = service.generateAuthCode('shared_secret');
 
-      expect(validity).toBeGreaterThan(0);
-      expect(validity).toBeLessThanOrEqual(30000);
-    });
+    expect(authCode.validity).toBeGreaterThan(0);
+    expect(authCode.validity).toBeLessThanOrEqual(30000);
+  });
 
-    it('should return correct validity when timestamp is less than validity time', () => {
-      jest.spyOn(Date, 'now').mockReturnValue(10000);
+  it('should return correct validity when timestamp is less than validity time', () => {
+    jest.spyOn(Date, 'now').mockReturnValue(10000);
 
-      expect(service.codeCurrentValidityTime).toBe(20000);
-    });
+    const authCode = service.generateAuthCode('shared_secret');
 
-    it('should return correct validity when timestamp is greater that validity time', () => {
-      jest.spyOn(Date, 'now').mockReturnValue(50000);
+    expect(authCode.validity).toBe(20000);
+  });
 
-      expect(service.codeCurrentValidityTime).toBe(10000);
-    });
+  it('should return correct validity when timestamp is greater that validity time', () => {
+    jest.spyOn(Date, 'now').mockReturnValue(50000);
+
+    const authCode = service.generateAuthCode('shared_secret');
+
+    expect(authCode.validity).toBe(10000);
+  });
+
+  it('should return correct generatedAt', () => {
+    jest.spyOn(Date, 'now').mockReturnValue(10000);
+
+    const authCode = service.generateAuthCode('shared_secret');
+
+    expect(authCode.generatedAt).toBe(10000);
   });
 });

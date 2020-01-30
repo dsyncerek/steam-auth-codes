@@ -5,11 +5,9 @@ import { SteamAccountService } from './steam-account.service';
 describe('SteamAccountGateway', () => {
   let gateway: SteamAccountGateway;
 
-  const steamAccountServiceMock = {};
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [SteamAccountGateway, { provide: SteamAccountService, useValue: steamAccountServiceMock }],
+      providers: [SteamAccountGateway, { provide: SteamAccountService, useValue: {} }],
     }).compile();
 
     gateway = module.get<SteamAccountGateway>(SteamAccountGateway);
@@ -17,9 +15,5 @@ describe('SteamAccountGateway', () => {
 
   it('should be defined', () => {
     expect(gateway).toBeDefined();
-  });
-
-  it('getAccounts()', () => {
-    // TODO
   });
 });
