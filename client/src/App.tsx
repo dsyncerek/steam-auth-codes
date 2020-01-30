@@ -3,6 +3,7 @@ import AccountList from './components/AccountList/AccountList';
 import Layout from './components/Layout/Layout';
 import Message from './components/Message/Message';
 import useSocket from './hooks/useSocket';
+import { SocketStateEnum } from './models/SocketStateEnum';
 import SteamAccount from './models/SteamAccount';
 
 const App: FC = () => {
@@ -16,10 +17,10 @@ const App: FC = () => {
 
   return (
     <Layout>
-      {socketState === 'loading' && <Message>Loading...</Message>}
-      {socketState === 'error' && <Message>Can't connect to the server!</Message>}
-      {socketState === 'connected' && accounts.length && <AccountList accounts={accounts} />}
-      {socketState === 'connected' && !accounts.length && <Message>No accounts found!</Message>}
+      {socketState === SocketStateEnum.Loading && <Message>Loading...</Message>}
+      {socketState === SocketStateEnum.Error && <Message>Can't connect to the server!</Message>}
+      {socketState === SocketStateEnum.Connected && accounts.length && <AccountList accounts={accounts} />}
+      {socketState === SocketStateEnum.Connected && !accounts.length && <Message>No accounts found!</Message>}
     </Layout>
   );
 };
