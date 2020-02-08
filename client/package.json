@@ -22,7 +22,7 @@
     "react-scripts": "^3.3.1",
     "register-service-worker": "^1.6.2",
     "socket.io-client": "^2.3.0",
-    "styled-components": "^5.0.0"
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "@types/jest": "^25.1.1",
