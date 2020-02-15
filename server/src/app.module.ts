@@ -3,7 +3,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { steamAccounts } from './config/steam-accounts';
-import { SteamAccountModule } from './steam-account/steam-account.module';
+import { SteamAccountModule } from './modules/steam-account/steam-account.module';
 
 const clientBuildPath = join(__dirname, '../..', 'client/build');
 

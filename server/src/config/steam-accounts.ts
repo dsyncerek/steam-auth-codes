@@ -1,4 +1,4 @@
-import { SteamAccount } from '../steam-account/entity/steam-account.entity';
+import { SteamAccount } from '../modules/steam-account/entity/steam-account.entity';
 
 export const steamAccounts: SteamAccount[] = [
   {
