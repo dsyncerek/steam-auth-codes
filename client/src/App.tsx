@@ -19,8 +19,8 @@ const App: FC = () => {
     <Layout>
       {socketState === SocketStateEnum.Loading && <Message>Loading...</Message>}
       {socketState === SocketStateEnum.Error && <Message>Can't connect to the server!</Message>}
-      {socketState === SocketStateEnum.Connected && accounts.length && <AccountList accounts={accounts} />}
-      {socketState === SocketStateEnum.Connected && !accounts.length && <Message>No accounts found!</Message>}
+      {socketState === SocketStateEnum.Connected && accounts.length > 0 && <AccountList accounts={accounts} />}
+      {socketState === SocketStateEnum.Connected && accounts.length === 0 && <Message>No accounts found!</Message>}
     </Layout>
   );
 };

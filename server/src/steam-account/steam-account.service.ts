@@ -13,7 +13,9 @@ export class SteamAccountService {
   constructor(
     private readonly authCodeService: AuthCodeService,
     @InjectSteamAccounts() private readonly steamAccounts: SteamAccount[],
-  ) {}
+  ) {
+    this.subject.next(this.updateSteamAccounts(this.steamAccounts));
+  }
 
   @Cron('0/30 * * * * *')
   private handleAuthCodesUpdate(): void {
