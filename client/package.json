@@ -43,6 +43,6 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.8.2"
   }
 }
