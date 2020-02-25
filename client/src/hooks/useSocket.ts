@@ -4,7 +4,7 @@ import { SocketStateEnum } from '../models/SocketStateEnum';
 
 const useSocket = (url: string): [SocketIOClient.Socket, string] => {
   const [socket] = useState(io(url, { autoConnect: false }));
-  const [socketState, setSocketState] = useState('loading');
+  const [socketState, setSocketState] = useState(SocketStateEnum.Loading);
 
   useEffect(() => {
     socket.connect();
