@@ -1,4 +1,4 @@
-const breakpoints: { [key: string]: number } = {
+export const breakpoints: { [key: string]: number } = {
   xs: 0,
   sm: 576,
   md: 768,
@@ -6,5 +6,3 @@ const breakpoints: { [key: string]: number } = {
   xl: 1200,
   xxl: 1440,
 };
-
-export default breakpoints;

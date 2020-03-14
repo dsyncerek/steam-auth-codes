@@ -5,6 +5,4 @@ type MessageProps = {
   children: ReactNode;
 };
 
-const Message: FC<MessageProps> = ({ children }) => <MessageStyled>{children}</MessageStyled>;
-
-export default Message;
+export const Message: FC<MessageProps> = ({ children }) => <MessageStyled>{children}</MessageStyled>;

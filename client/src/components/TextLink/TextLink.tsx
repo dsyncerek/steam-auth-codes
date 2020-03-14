@@ -6,6 +6,6 @@ type TextLinkProps = {
   href: string;
 };
 
-const TextLink: FC<TextLinkProps> = ({ children, href }) => <TextLinkStyled href={href}>{children}</TextLinkStyled>;
-
-export default TextLink;
+export const TextLink: FC<TextLinkProps> = ({ children, href }) => (
+  <TextLinkStyled href={href}>{children}</TextLinkStyled>
+);

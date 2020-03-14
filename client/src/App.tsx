@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
-import AccountList from './components/AccountList/AccountList';
-import Layout from './components/Layout/Layout';
-import Message from './components/Message/Message';
-import useSocket from './hooks/useSocket';
+import { AccountList } from './components/AccountList/AccountList';
+import { Layout } from './components/Layout/Layout';
+import { Message } from './components/Message/Message';
+import { useSocket } from './hooks/useSocket';
 import { SocketStateEnum } from './models/SocketStateEnum';
-import SteamAccount from './models/SteamAccount';
+import { SteamAccount } from './models/SteamAccount';
 
-const App: FC = () => {
+export const App: FC = () => {
   const [socket, socketState] = useSocket('/');
   const [accounts, setAccounts] = useState<SteamAccount[]>([]);
 
@@ -24,5 +24,3 @@ const App: FC = () => {
     </Layout>
   );
 };
-
-export default App;

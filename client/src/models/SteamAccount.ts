@@ -1,8 +1,6 @@
-import AuthCode from './AuthCode';
+import { AuthCode } from './AuthCode';
 
-interface SteamAccount {
+export interface SteamAccount {
   username: string;
   authCode: AuthCode;
 }
-
-export default SteamAccount;

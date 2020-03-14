@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { SocketStateEnum } from '../models/SocketStateEnum';
 
-const useSocket = (url: string): [SocketIOClient.Socket, string] => {
+export const useSocket = (url: string): [SocketIOClient.Socket, string] => {
   const [socket] = useState(io(url, { autoConnect: false }));
   const [socketState, setSocketState] = useState(SocketStateEnum.Loading);
 
@@ -20,5 +20,3 @@ const useSocket = (url: string): [SocketIOClient.Socket, string] => {
 
   return [socket, socketState];
 };
-
-export default useSocket;

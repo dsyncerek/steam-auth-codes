@@ -7,10 +7,8 @@ type SectionProps = {
   as?: 'div' | 'section' | 'main';
 };
 
-const Section: FC<SectionProps> = ({ children, odd = false, as = 'div' }) => (
+export const Section: FC<SectionProps> = ({ children, odd = false, as = 'div' }) => (
   <SectionStyled odd={odd} as={as}>
     {children}
   </SectionStyled>
 );
-
-export default Section;

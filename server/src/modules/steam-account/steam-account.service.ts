@@ -14,22 +14,16 @@ export class SteamAccountService {
     private readonly authCodeService: AuthCodeService,
     @InjectSteamAccounts() private readonly steamAccounts: SteamAccount[],
   ) {
-    this.subject.next(this.updateSteamAccounts(this.steamAccounts));
+    this.handleAuthCodesUpdate();
   }
 
   @Cron('0/30 * * * * *')
   private handleAuthCodesUpdate(): void {
-    this.subject.next(this.updateSteamAccounts(this.steamAccounts));
-  }
-
-  private updateSteamAccounts(steamAccounts: SteamAccount[]): SteamAccount[] {
-    return steamAccounts.map(steamAccount => this.updateSteamAccount(steamAccount));
-  }
-
-  private updateSteamAccount(steamAccount: SteamAccount): SteamAccount {
-    return new SteamAccount({
-      ...steamAccount,
-      authCode: this.authCodeService.generateAuthCode(steamAccount.sharedSecret),
+    const newSteamAccounts = this.steamAccounts.map(steamAccount => {
+      const authCode = this.authCodeService.generateAuthCode(steamAccount.sharedSecret);
+      return { ...steamAccount, authCode };
     });
+
+    this.subject.next(newSteamAccounts);
   }
 }
