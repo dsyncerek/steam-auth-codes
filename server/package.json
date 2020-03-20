@@ -19,7 +19,7 @@
     "@nestjs/platform-socket.io": "^7.0.2",
     "@nestjs/schedule": "^0.3.0",
     "@nestjs/serve-static": "^2.1.0",
-    "@nestjs/websockets": "^7.0.2",
+    "@nestjs/websockets": "^7.0.3",
     "class-transformer": "^0.2.3",
     "dotenv": "^8.2.0",
     "reflect-metadata": "^0.1.13",
