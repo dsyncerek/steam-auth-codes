@@ -6,9 +6,9 @@ export const SectionStyled = styled.div<{ odd: boolean }>(
     ${padding(props.theme.gutter * 10, props.theme.gutter * 3)};
 
     ${props.odd &&
-      css`
-        background: ${props.theme.colorBgReversed};
-        color: ${props.theme.colorTextReversed};
-      `}
+    css`
+      background: ${props.theme.colorBgReversed};
+      color: ${props.theme.colorTextReversed};
+    `}
   `,
 );

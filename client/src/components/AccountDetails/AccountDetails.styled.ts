@@ -34,14 +34,14 @@ export const AccountDetailsStyled = styled.div<{ isEnding: boolean }>(
     text-align: center;
 
     ${props.isEnding &&
-      css`
-        ${BarStyled} {
-          background: ${props.theme.colors.red};
-        }
+    css`
+      ${BarStyled} {
+        background: ${props.theme.colors.red};
+      }
 
-        ${UsernameStyled} {
-          color: ${props.theme.colors.red};
-        }
-      `}
+      ${UsernameStyled} {
+        color: ${props.theme.colors.red};
+      }
+    `}
   `,
 );
