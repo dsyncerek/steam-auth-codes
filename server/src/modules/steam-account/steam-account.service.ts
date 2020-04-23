@@ -19,11 +19,11 @@ export class SteamAccountService {
 
   @Cron('0/30 * * * * *')
   private handleAuthCodesUpdate(): void {
-    const newSteamAccounts = this.steamAccounts.map(steamAccount => {
-      const authCode = this.authCodeService.generateAuthCode(steamAccount.sharedSecret);
-      return { ...steamAccount, authCode };
-    });
-
-    this.subject.next(newSteamAccounts);
+    this.subject.next(
+      this.steamAccounts.map(steamAccount => {
+        const authCode = this.authCodeService.generateAuthCode(steamAccount.sharedSecret);
+        return { ...steamAccount, authCode };
+      }),
+    );
   }
 }

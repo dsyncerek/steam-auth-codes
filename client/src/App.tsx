@@ -8,19 +8,27 @@ import { SteamAccount } from './models/SteamAccount';
 
 export const App: FC = () => {
   const [socket, socketState] = useSocket('/');
-  const [accounts, setAccounts] = useState<SteamAccount[]>([]);
+  const [accounts, setAccounts] = useState<SteamAccount[]>();
 
   useEffect(() => {
     socket.emit('accounts');
     socket.on('accounts', (accounts: SteamAccount[]) => setAccounts(accounts));
   }, [socket]);
 
-  return (
-    <Layout>
-      {socketState === SocketStateEnum.Loading && <Message>Loading...</Message>}
-      {socketState === SocketStateEnum.Error && <Message>Can't connect to the server!</Message>}
-      {socketState === SocketStateEnum.Connected && accounts.length > 0 && <AccountList accounts={accounts} />}
-      {socketState === SocketStateEnum.Connected && accounts.length === 0 && <Message>No accounts found!</Message>}
-    </Layout>
-  );
+  const renderContent = () => {
+    if (socketState === SocketStateEnum.Loading || !accounts) {
+      return <Message>Loading...</Message>;
+    }
+    if (socketState === SocketStateEnum.Error) {
+      return <Message>Can't connect to the server!</Message>;
+    }
+    if (socketState === SocketStateEnum.Connected && accounts.length === 0) {
+      return <Message>No accounts found!</Message>;
+    }
+    if (socketState === SocketStateEnum.Connected && accounts.length > 0) {
+      return <AccountList accounts={accounts} />;
+    }
+  };
+
+  return <Layout>{renderContent()}</Layout>;
 };

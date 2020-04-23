@@ -1,8 +1,7 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import { TextLinkStyled } from './TextLink.styled';
 
 type TextLinkProps = {
-  children: ReactNode;
   href: string;
 };
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { SteamAccount } from '../../models/SteamAccount';
-import { AccountDetails } from '../AccountDetails/AccountDetails';
+import { AccountDetails } from './AccountDetails/AccountDetails';
 import { AccountListStyled } from './AccountList.styled';
 
 type AccountListProps = {

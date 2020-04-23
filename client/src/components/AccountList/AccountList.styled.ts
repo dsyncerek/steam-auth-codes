@@ -1,6 +1,6 @@
 import { margin } from 'polished';
 import styled, { css } from 'styled-components';
-import { AccountDetailsStyled } from '../AccountDetails/AccountDetails.styled';
+import { AccountDetailsStyled } from './AccountDetails/AccountDetails.styled';
 
 export const AccountListStyled = styled.div(
   props => css`

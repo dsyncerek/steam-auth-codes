@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { useAuthCodeValidity } from '../../hooks/useAuthCodeValidity';
-import { SteamAccount } from '../../models/SteamAccount';
+import { useAuthCodeValidity } from '../../../hooks/useAuthCodeValidity';
+import { SteamAccount } from '../../../models/SteamAccount';
 import { AccountDetailsStyled, BarStyled, CodeStyled, UsernameStyled } from './AccountDetails.styled';
 
 const codeDecreaseInterval = 1000;
