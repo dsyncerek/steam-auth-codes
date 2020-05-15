@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Cron } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { BehaviorSubject } from 'rxjs';
 import { AuthCodeService } from '../auth-code/auth-code.service';
 import { InjectSteamAccounts } from './decorators/inject-steam-accounts.decorator';
@@ -17,7 +17,7 @@ export class SteamAccountService {
     this.handleAuthCodesUpdate();
   }
 
-  @Cron('0/30 * * * * *')
+  @Cron(CronExpression.EVERY_30_SECONDS)
   private handleAuthCodesUpdate(): void {
     this.subject.next(
       this.steamAccounts.map(steamAccount => {
