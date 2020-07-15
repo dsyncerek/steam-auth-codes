@@ -5,6 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "analyze": "npm run build && npx source-map-explorer 'build/**/*.js'",
     "test": "react-scripts test --watchAll=false",
     "test:watch": "react-scripts test",
     "test:cov": "react-scripts test --watchAll=false --coverage",
