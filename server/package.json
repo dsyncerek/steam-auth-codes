@@ -23,7 +23,7 @@
     "class-transformer": "^0.2.3",
     "dotenv": "^8.2.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.6.0",
+    "rxjs": "^6.6.2",
     "steam-totp": "^2.1.1"
   },
   "devDependencies": {
