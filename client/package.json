@@ -22,7 +22,7 @@
     "react-dom": "^17.0.1",
     "react-scripts": "^4.0.1",
     "register-service-worker": "^1.7.1",
-    "socket.io-client": "^2.3.1",
+    "socket.io-client": "^3.0.3",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
