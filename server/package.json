@@ -21,7 +21,7 @@
     "@nestjs/serve-static": "^2.1.4",
     "@nestjs/websockets": "^7.6.15",
     "class-transformer": "^0.4.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^9.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.7",
     "steam-totp": "^2.1.1"
