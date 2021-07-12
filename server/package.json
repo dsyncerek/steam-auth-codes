@@ -30,7 +30,7 @@
     "@nestjs/cli": "^7.6.0",
     "@nestjs/schematics": "^7.3.1",
     "@nestjs/testing": "^7.6.18",
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^26.0.24",
     "@types/steam-totp": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
