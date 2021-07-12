@@ -30,7 +30,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.23",
     "@types/react": "^17.0.14",
-    "@types/react-dom": "^17.0.8",
+    "@types/react-dom": "^17.0.9",
     "@types/socket.io-client": "^1.4.36",
     "@types/styled-components": "^5.1.11",
     "enzyme": "^3.11.0",
