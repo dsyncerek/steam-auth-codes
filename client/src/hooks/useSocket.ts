@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import io, { Socket } from 'socket.io-client';
 import { SocketStateEnum } from '../models/SocketStateEnum';
 
-export const useSocket = (url: string): [SocketIOClient.Socket, string] => {
+export const useSocket = (url: string): [Socket, string] => {
   const [socket] = useState(io(url, { autoConnect: false }));
   const [socketState, setSocketState] = useState(SocketStateEnum.Loading);
 
@@ -13,7 +13,6 @@ export const useSocket = (url: string): [SocketIOClient.Socket, string] => {
     socket.on('disconnect', () => setSocketState(SocketStateEnum.Loading));
 
     return () => {
-      socket.removeAllListeners();
       socket.close();
     };
   }, [socket]);
