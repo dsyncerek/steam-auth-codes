@@ -20,7 +20,7 @@
     "@nestjs/schedule": "^1.0.1",
     "@nestjs/serve-static": "^2.2.2",
     "@nestjs/websockets": "^8.0.6",
-    "class-transformer": "^0.4.0",
+    "class-transformer": "^0.5.1",
     "dotenv": "^10.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
