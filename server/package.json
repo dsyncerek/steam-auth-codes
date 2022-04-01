@@ -24,7 +24,7 @@
     "dotenv": "^10.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
-    "steam-totp": "^2.1.1"
+    "steam-totp": "^2.1.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.1.1",
